@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/ePortfolio/static/css/main.f10abe82.css",
+    "main.js": "/ePortfolio/static/js/main.225ec361.js",
+    "static/js/453.0394f42a.chunk.js": "/ePortfolio/static/js/453.0394f42a.chunk.js",
+    "static/media/header.svg": "/ePortfolio/static/media/header.21724f75d309282398a6c925c8e65f2b.svg",
+    "static/media/tex.svg": "/ePortfolio/static/media/tex.ee0e463391231937c96658e4b55931d4.svg",
+    "static/media/linux.svg": "/ePortfolio/static/media/linux.ce6f70ea9f07201ad113cdf4074aa2a4.svg",
+    "static/media/react.svg": "/ePortfolio/static/media/react.ede6169f52a5493509c0b1f9a00a897d.svg",
+    "static/media/java.svg": "/ePortfolio/static/media/java.790513251189d8347f59e5461b93a88f.svg",
+    "static/media/python.svg": "/ePortfolio/static/media/python.41e4e4639a515320ad53e09ea07bc817.svg",
+    "static/media/asm.svg": "/ePortfolio/static/media/asm.3871f3db910ce6052c536cf599b4f391.svg",
+    "static/media/android.svg": "/ePortfolio/static/media/android.29fcfe093e5878e7961579cf8185ad22.svg",
+    "static/media/jira.svg": "/ePortfolio/static/media/jira.99619a496f87c59729608f3beca14363.svg",
+    "static/media/mongodb.svg": "/ePortfolio/static/media/mongodb.b81fc2a280f5e061624e2b1215f50ffc.svg",
+    "static/media/git.svg": "/ePortfolio/static/media/git.48fcc5f688e633db492667bf7ea283ef.svg",
+    "static/media/javascript.svg": "/ePortfolio/static/media/javascript.988d8d0811db43cc9e07b268e10afb9f.svg",
+    "static/media/c.svg": "/ePortfolio/static/media/c.dae57b2f3d69b443bd36ab44ef905ad2.svg",
+    "static/media/html.svg": "/ePortfolio/static/media/html.2b1672e2872329dc14521e223decd0fd.svg",
+    "static/media/firebase.svg": "/ePortfolio/static/media/firebase.ab67ede542365566f67ac0516bd95fc0.svg",
+    "index.html": "/ePortfolio/index.html",
+    "static/media/figma.svg": "/ePortfolio/static/media/figma.3247acbc51507715ac07f4d8994eba7f.svg",
+    "static/media/css.svg": "/ePortfolio/static/media/css.73957970fe49e9066a4671ea3670020c.svg",
+    "static/media/circle.svg": "/ePortfolio/static/media/circle.6008ed684fd3becf2ca83ee3735b168a.svg",
+    "main.f10abe82.css.map": "/ePortfolio/static/css/main.f10abe82.css.map",
+    "main.225ec361.js.map": "/ePortfolio/static/js/main.225ec361.js.map",
+    "453.0394f42a.chunk.js.map": "/ePortfolio/static/js/453.0394f42a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f10abe82.css",
+    "static/js/main.225ec361.js"
+  ]
+}
