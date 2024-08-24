@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from './components/navBar';
 import Header from './components/header';
 import Timeline from './components/timeline';
@@ -10,6 +11,14 @@ function App() {
   const [activeSection, setActiveSection] = useState('Timeline');
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (window.location.pathname === '/ePortfolio') {
+      navigate('/#/Timeline');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -88,7 +97,7 @@ function App() {
 
           <div className="Right-section">
             <section id="Timeline">
-              <Header /> {}
+              <Header />
               <Timeline />
             </section>
             <section id="Technologies">
