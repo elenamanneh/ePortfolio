@@ -1,0 +1,512 @@
+/*********************
+General Styles
+*********************/
+
+body, html, .App {
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.NavBar, .Right-section, .Left-section {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.Right-section {
+    padding: 10px 20px;
+    margin: 0 auto;
+}
+
+/*********************
+Announcements
+*********************/
+
+.Announcements {
+    margin: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/*********************
+Left Section
+*********************/
+
+.Header {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.Header-img {
+    max-width: 90%;
+    height: auto;
+}
+
+.Section-list {
+    width: 100%;
+}
+
+.Section-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.Section-list li {
+    margin: 15px 0;
+}
+
+.Section-list li a {
+    text-decoration: none;
+    color: #444;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.Section-list li.active a {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.NavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    padding-top: 10px;
+    background-color: #F7F9FC;
+    border-top: 1px solid #E0E0E0;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.NavBar-button,
+.Resume-link {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.NavBar-button img,
+.Resume-link img {
+    height: 100%;
+    width: auto;
+}
+
+.NavBar-button:hover,
+.Resume-link:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.Resume-link {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 50%;
+    font-size: 0;
+}
+
+.Resume-link img {
+    margin-right: 0;
+}
+
+.Resume-link:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .NavBar {
+        border: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 10px 30px;
+        gap: 20px;
+        flex-wrap: nowrap;
+    }
+    
+    .NavBar-button,
+    .Resume-link {
+        height: 24px;
+    }
+
+    .Resume-link {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .Right-section, .Left-section {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+
+/*********************
+About Me
+*********************/
+
+.Timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.Timeline-left {
+    width: 40%;
+}
+
+.Timeline-right {
+    width: 60%;
+}
+
+.Timeline-left, .Timeline-right {
+    padding: 0 10px;
+}
+
+.Timeline-left h2,
+.Timeline-right h2 {
+    color: #000;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.Timeline-left h2::after,
+.Timeline-right h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 4px;
+    background-color: #000;
+}
+
+.Timeline-left ul,
+.Timeline-right ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.Timeline-left ul li,
+.Timeline-right ul li {
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    padding-left: 25px;
+    position: relative;
+}
+
+.Timeline-left ul li::before,
+.Timeline-right ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .Timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .Timeline-left,
+    .Timeline-right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .Timeline-left ul li,
+    .Timeline-right ul li {
+        padding-left: 15px;
+    }
+
+    .Timeline-left h2::after,
+    .Timeline-right h2::after {
+        width: 30px;
+    }
+}
+
+
+/*********************
+Technologies Section
+*********************/
+
+.Technologies {
+    margin: 60px auto;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.Icon-grid-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.Icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.Icon-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.Icon-image {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.Icon-name {
+    font-size: 1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.Icon-item:hover .Icon-name {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.Icon-item:hover .Icon-image {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .Icon-grid {
+        gap: 20px;
+    }
+
+    .Icon-item {
+        width: 60px;
+        height: 60px;
+    }
+
+    .Icon-image {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/*********************
+Projects
+*********************/
+
+.Projects-carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    height: 400px;
+}
+
+.Projects-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px;
+    padding-right: 0;
+    width: 95%;
+    margin: 0 auto;
+    align-items: stretch;
+    height: auto;
+}
+
+.Projects-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.Project-slide {
+    flex: 0 0 auto;
+    width: calc(100% / 3 - 20px);
+    background-color: #F7F9FC;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Project-slide-center {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.Project-tech-icon {
+    height: 24px;
+}
+
+.Project-header {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Project-technologies {
+    display: flex;
+    justify-content: right;
+    gap: 20%;
+}
+
+.Project-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.Project-content h3 {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.Project-content p {
+    flex-grow: 1;
+}
+
+.Carousel-prev, .Carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.Carousel-prev {
+    left: 10px;
+}
+
+.Carousel-next {
+    right: 10px;
+}
+
+.Carousel-prev:hover, .Carousel-next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+    .Projects-carousel-container {
+        padding: 0;
+        flex-direction: column;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .Projects-carousel {
+        overflow-x: scroll;
+        padding: 10px 0;
+        width: 80%;
+        gap: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Project-slide {
+        flex: 0 0 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .Carousel-prev, .Carousel-next {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .Carousel-prev {
+        left: 10px;
+    }
+
+    .Carousel-next {
+        right: 10px;
+    }
+
+    .Project-header {
+        flex-direction: column;
+    }
+
+    .Project-technologies {
+        justify-content: flex-start;
+        gap: 10%;
+    }
+
+    .Project-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .Project-content p {
+        font-size: 1rem;
+    }
+}

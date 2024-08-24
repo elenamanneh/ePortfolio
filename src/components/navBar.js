@@ -1,45 +1,22 @@
-import { linkedin, github, mail, resume } from '../img/button-icons';
-import './navBar.css';
+import './components.css';
 
-
-function navBar() {
-
+function NavBar() {
   return (
-    <div className="Nav-bar">
-      <a
-        className="Resume-link"
-        href="https://drive.google.com/file/d/1xIB3RPfpL3rR0Ct2C1vzoq8ZQqdIsFiW/view?usp=sharing"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={resume} className="Resume-button" alt="resume-button" />
+    <div className="NavBar">
+      <a href="https://drive.google.com/file/d/1xIB3RPfpL3rR0Ct2C1vzoq8ZQqdIsFiW/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        Resume
       </a>
-      <a
-        className="Mail-link"
-        href="mailto:elenamanneh@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={mail} className="Mail-button" alt="mail-button" />
+      <a href="mailto:elenamanneh@gmail.com" target="_blank" rel="noopener noreferrer">
+        Mail
       </a>
-      <a
-        className="Linkedin-link"
-        href="https://www.linkedin.com/in/elenamanneh/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={linkedin} className="Linkedin-button" alt="linkedin-button" />
+      <a href="https://www.linkedin.com/in/elenamanneh/" target="_blank" rel="noopener noreferrer">
+        LinkedIn
       </a>
-      <a
-        className="Github-link"
-        href="https://github.com/elenamanneh"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src={github} className="Github-button" alt="github-button" />
+      <a href="https://github.com/elenamanneh" target="_blank" rel="noopener noreferrer">
+        GitHub
       </a>
     </div>
   );
 }
 
-export default navBar;
+export default NavBar;

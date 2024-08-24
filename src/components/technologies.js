@@ -1,36 +1,41 @@
-import { android, c, css, figma, firebase, git, html, java, javascript, jira, mongodb, python, react, tex, asm } from '../img/technologies-icons';
-import './technologies.css'
+import { android, c, css, figma, firebase, git, html, java, javascript, jira, mongodb, python, react, tex, asm, linux } from '../img/technologies-icons';
+import './components.css';
 
+const technologies = [
+  { name: 'C', icon: c },
+  { name: 'Java', icon: java },
+  { name: 'Python', icon: python },
+  { name: 'HTML', icon: html },
+  { name: 'CSS', icon: css },
+  { name: 'JavaScript', icon: javascript },
+  { name: 'React', icon: react },
+  { name: 'Assembly', icon: asm },
+  { name: 'MongoDB', icon: mongodb },
+  { name: 'Firebase', icon: firebase },
+  { name: 'Git', icon: git },
+  { name: 'Linux', icon: linux },
+  { name: 'Android', icon: android },
+  { name: 'TeX', icon: tex },
+  { name: 'Jira', icon: jira },
+  { name: 'Figma', icon: figma },
+];
 
-function technologies() {
-
+function Technologies() {
   return (
     <div className="Technologies">
-      <h1>
-        TECHNOLOGIES
-      </h1>
+      <h1>Technologies</h1>
       <div className="Icon-grid-container">
         <div className="Icon-grid">
-          <div className="Icon-item"><img src={c} className="C" alt="c" /> </div>
-          <div className="Icon-item"><img src={java} className="Java" alt="java" /> </div>
-          <div className="Icon-item"><img src={python} className="Python" alt="python" /> </div>
-          <div className="Icon-item"><img src={html} className="Html" alt="html" /> </div>
-          <div className="Icon-item"><img src={css} className="Css" alt="css" /> </div>
-          <div className="Icon-item"><img src={javascript} className="Javascript" alt="javascript" /> </div>
-          <div className="Icon-item"><img src={react} className="React" alt="react" /> </div>
-          <div className="Icon-item"><img src={asm} className="ASM" alt="asm" /> </div>
-          <div className="Icon-item"><img src={mongodb} className="Mongodb" alt="mongodb" /> </div>
-          <div className="Icon-item"><img src={firebase} className="Firebase" alt="firebase" /> </div>
-          <div className="Icon-item"><img src={git} className="Git" alt="git" /> </div>
-          <div className="Icon-item"><img src={android} className="Android" alt="android" /> </div>
-          <div className="Icon-item"><img src={tex} className="Tex" alt="tex" /> </div>
-          <div className="Icon-item"><img src={jira} className="Jira" alt="jira" /> </div>
-          <div className="Icon-item"><img src={figma} className="Figma" alt="figma" /> </div>
+          {technologies.map((tech, index) => (
+            <div className="Icon-item" key={index}>
+              <img src={tech.icon} className="Icon-image" alt={tech.name} />
+              <div className="Icon-name">{tech.name}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-export default technologies;
-
+export default Technologies;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './projectCards.css';
+import './components.css';
 
 function ProjectCard({ project }) {
   const [isFlipped, setIsFlipped] = useState(false);

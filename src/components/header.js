@@ -1,15 +1,12 @@
 import { header_img } from '../img/style';
-import './header.css'
+import './components.css';
 
-
-function header() {
-
-    return (
-        <div className="Header">
-            <img src={header_img} className="Header-img" alt="header-img" />
-        </div>
-    );
+function Header() {
+  return (
+    <div className="Header">
+      <img src={header_img} className="Header-img" alt="header" />
+    </div>
+  );
 }
 
-export default header;
-
+export default Header;

@@ -1,12 +1,11 @@
-import './announcements.css'
+import './components.css';
 
-function announcements() {
-
-    return (
-        <div className="Announcements">
-            <p>Mobile version coming soon!</p>
-        </div>
-    );
+function Announcements() {
+  return (
+    <div className="Announcements">
+      
+    </div>
+  );
 }
 
-export default announcements;
+export default Announcements;

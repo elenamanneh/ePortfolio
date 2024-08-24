@@ -1,48 +1,180 @@
+/*********************
+General Styles
+*********************/
+
 .App {
-  text-align: center;
-  background-color: #D8F9FF;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
 }
 
-h1,
-h2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 48px;
-  letter-spacing: 0.05em;
-  line-height: normal;
-  color: black;
-  margin-top: 0;
-  padding-top: 0;
+.Left-section {
+  width: 30%;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background-color: #F7F9FC;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  justify-content: space-between;
+}
+
+.NavBar-container {
+  width: 100%;
+  margin-top: auto;
+}
+
+.Right-section {
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.Right-section section {
+  scroll-snap-align: start;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 50px;
+  font-weight: lighter;
+  text-align: left;
+  font-size: 30px;
+  margin: 20px 10px;
 }
 
 h2 {
   text-align: left;
+  font-size: 24px;
+  margin-top: 0;
 }
 
 h3 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 25px;
-  letter-spacing: normal;
-  line-height: normal;
-  text-align: left;
-  margin-top: 0;
-  padding-top: 0;
+  font-weight: lighter;
+  font-size: 20px;
 }
 
-li {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 17px;
-  letter-spacing: normal;
-  line-height: normal;
-  text-align: left;
-  margin-top: 0;
-  padding-top: 0;
-  margin-left: 20px;
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: lighter;
+}
+
+/*********************
+Mobile Styles
+*********************/
+
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .Left-section {
+    width: 100%;
+    height: auto;
+    position: static;
+    box-shadow: none;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .NavBar-container {
+    margin-top: 0;
+    margin-left: auto;
+    display: none;
+  }
+
+  .Right-section {
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+    padding: 20px;
+  }
+
+  .Mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F7F9FC;
+    padding: 10px 20px;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .Right-section {
+    padding-top: 60px;
+  }
+
+  .Menu-icon {
+    cursor: pointer;
+    font-size: 24px;
+  }
+
+  .Mobile-menu {
+    background-color: #f7f9fc;
+    width: 100%;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .Mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  .Mobile-menu li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .Mobile-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: block;
+  }
+
+  .Mobile-menu li.active a {
+    font-weight: bold;
+  }
+
+  section {
+    height: auto;
+    display: block;
+    padding: 0;
+  }
+}
+
+/*********************
+Desktop Styles
+*********************/
+
+@media (min-width: 769px) {
+  .Mobile-header,
+  .Mobile-menu {
+    display: none;
+  }
 }
