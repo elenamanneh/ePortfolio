@@ -3,6 +3,36 @@ import { android, c, css, figma, firebase, git, html, java, javascript, jira, mo
 const projects = [
   {
     id: 1,
+    name: "Pursuiter Job Application Website",
+    languages: [
+      { name: "MongoDB", icon: mongodb },
+      { name: "MongoDB", icon: mongodb },
+      { name: "React", icon: react },
+      { name: "Android", icon: android },
+    ],
+    description: [
+      "Led a Scrum team of 4 to develop a full-stack job application website using the MERN stack.",
+      "Integrated AI for tailored applicant feedback and implemented filters to ensure only qualified applicants can apply."
+
+    ],
+  },
+  {
+    id: 2,
+    name: "Pintos Operating System",
+    languages: [
+      { name: "C", icon: c },
+      { name: "Linux", icon: linux },
+    ],
+    description: [
+      "Implemented priority scheduling and donation algorithms to improve thread scheduling and resource allocation.",
+      "Provided support for user programs through system calls and argument passing.",
+      "Designed virtual memory including virtual-to-physical mappings and algorithms for eviction and swapping.",
+      "Implemented filesystem including inode structures and growing files."
+
+    ],
+  },
+  {
+    id: 3,
     name: "Walnut Course Scheduler",
     languages: [
       { name: "Java", icon: java },
@@ -15,7 +45,20 @@ const projects = [
     ],
   },
   {
-    id: 2,
+    id: 4,
+    name: "Stocks Social Network",
+    languages: [
+      { name: "Java", icon: java },
+      { name: "Firebase", icon: firebase },
+      { name: "Android", icon: android },
+    ],
+    description: [
+      "Designed an Android mobile app with user-friendly front-end interfaces in an Agile Scrum of 5.",
+      "Integrated Firebase Realtime Database applied OOP and SOLID principles for efficient back-end development."
+    ],
+  },
+  {
+    id: 5,
     name: "System Monitoring Tool",
     languages: [
       { name: "Linux", icon: linux },
@@ -28,7 +71,7 @@ const projects = [
     ],
   },
   {
-    id: 3,
+    id: 6,
     name: "File Descriptor Monitoring Tool",
     languages: [
       { name: "Linux", icon: linux },
@@ -40,7 +83,7 @@ const projects = [
     ],
   },
   {
-    id: 4,
+    id: 7,
     name: "Reinforcement Learning in Gridworld",
     languages: [
       { name: "Python", icon: python },
@@ -52,7 +95,7 @@ const projects = [
     ],
   },
   {
-    id: 5,
+    id: 8,
     name: "AI-Based Search and Multi-Agent Strategies in Pacman",
     languages: [
       { name: "Python", icon: python },
@@ -63,7 +106,7 @@ const projects = [
     ],
   },
   {
-    id: 6,
+    id: 9,
     name: "Ghost Tracking in Pacman",
     languages: [
       { name: "Python", icon: python },
@@ -74,7 +117,7 @@ const projects = [
     ],
   },
   {
-    id: 7,
+    id: 10,
     name: "Escape the Ghost",
     languages: [
       { name: "Assembly", icon: asm },
@@ -86,7 +129,7 @@ const projects = [
     ],
   },
   {
-    id: 8,
+    id: 11,
     name: "Graffit Social Networking Platform",
     languages: [
       { name: "C", icon: c },
@@ -98,7 +141,7 @@ const projects = [
   },
 
   {
-    id: 9,
+    id: 12,
     name: "Quadtree Image Decomposition",
     languages: [
       { name: "C", icon: c },

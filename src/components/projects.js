@@ -88,7 +88,7 @@ function Projects() {
                     {visibleProjects.map((project, index) => (
                         <div 
                             className={`Project-slide ${
-                                visibleProjects.length === 3 && index === 1 ? 'Project-slide-center' : ''
+                                visibleProjects.length === 3 && index === 1 ? '':''
                             }`} 
                             key={index}
                         >

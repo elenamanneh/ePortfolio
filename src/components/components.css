@@ -382,6 +382,7 @@ Projects
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    gap: 50px;
 }
 
 .Project-technologies {
@@ -495,6 +496,7 @@ Projects
 
     .Project-header {
         flex-direction: column;
+        gap: 10px;
     }
 
     .Project-technologies {
