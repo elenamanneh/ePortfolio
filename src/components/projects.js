@@ -4,7 +4,7 @@ import './components.css';
 
 function Projects() {
     const [visibleProjects, setVisibleProjects] = useState([]);
-    const [startIndex, setStartIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const carouselRef = useRef(null);
 
     const setFixedHeight = () => {
@@ -39,8 +39,9 @@ function Projects() {
         const visibleCount = isMobile ? 1 : 3;
         const newVisibleProjects = [];
 
-        for (let i = 0; i < visibleCount; i++) {
-            newVisibleProjects.push(ProjectDetails[(startIndex + i) % ProjectDetails.length]);
+        for (let i = -1; i <= 1; i++) {
+            const index = (currentIndex + i + ProjectDetails.length) % ProjectDetails.length;
+            newVisibleProjects.push(ProjectDetails[index]);
         }
 
         setVisibleProjects(newVisibleProjects);
@@ -61,22 +62,18 @@ function Projects() {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [startIndex]);
+    }, [currentIndex]);
 
     useEffect(() => {
         setTimeout(setFixedHeight, 0);
     }, [visibleProjects]);
 
     const handleNext = () => {
-        const isMobile = window.innerWidth <= 768;
-        const increment = isMobile ? 1 : 3;
-        setStartIndex((prevIndex) => (prevIndex + increment) % ProjectDetails.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % ProjectDetails.length);
     };
 
     const handlePrev = () => {
-        const isMobile = window.innerWidth <= 768;
-        const increment = isMobile ? 1 : 3;
-        setStartIndex((prevIndex) => (prevIndex - increment + ProjectDetails.length) % ProjectDetails.length);
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + ProjectDetails.length) % ProjectDetails.length);
     };
 
     return (
@@ -86,10 +83,10 @@ function Projects() {
                 <button className="Carousel-prev" onClick={handlePrev}>‹</button>
                 <div className="Projects-carousel" ref={carouselRef}>
                     {visibleProjects.map((project, index) => (
-                        <div 
+                        <div
                             className={`Project-slide ${
-                                visibleProjects.length === 3 && index === 1 ? '':''
-                            }`} 
+                                index === 1 ? 'active' : 'blurred'
+                            }`}
                             key={index}
                         >
                             <div className="Project-content">
@@ -106,12 +103,34 @@ function Projects() {
                                         ))}
                                     </div>
                                 </div>
-                                <p>{project.description.join(' ')}</p>
+                                <ul className="Project-details">
+                                    {project.description.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                                {}
+                                {project.github && (
+                                    <div className="Project-github">
+                                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                            View on GitHub
+                                        </a>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
                 </div>
                 <button className="Carousel-next" onClick={handleNext}>›</button>
+            </div>
+
+            <div className="Carousel-dots">
+                {ProjectDetails.map((_, index) => (
+                    <span
+                        key={index}
+                        className={`dot ${index === currentIndex ? 'active-dot' : ''}`}
+                        onClick={() => setCurrentIndex(index)}
+                    ></span>
+                ))}
             </div>
         </div>
     );

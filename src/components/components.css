@@ -355,6 +355,28 @@ Projects
     display: none;
 }
 
+.Carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.Carousel-dots .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.Carousel-dots .dot.active-dot {
+    background-color: #717171;
+}
+
+
 .Project-slide {
     flex: 0 0 auto;
     width: calc(100% / 3 - 20px);
@@ -367,6 +389,19 @@ Projects
     flex-direction: column;
     height: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.Project-slide.blurred {
+    filter: blur(2px);
+    opacity: 0.5;
+    transform: scale(0.9);
+}
+
+.Project-slide.active {
+    filter: none;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .Project-slide-center {
@@ -409,6 +444,28 @@ Projects
 .Project-content p {
     flex-grow: 1;
 }
+
+.Project-details {
+    list-style-type: disc;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.Project-github {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.Project-github a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.Project-github a:hover {
+    text-decoration: underline;
+}
+
 
 .Carousel-prev, .Carousel-next {
     position: absolute;
