@@ -1,6 +1,7 @@
 import { experienceContent, returnPrompt } from "../constants";
 import { k }                         from "../kaboomCtx";
 import { displayDialogue }          from "../utils";
+import { navigate } from "../router";
 
 k.scene("experience", () => {
     const ui = document.getElementById("textbox-container");
@@ -11,7 +12,7 @@ k.scene("experience", () => {
     // show experience content from constants.js instantly
     displayDialogue(content, () => {
       ui.classList.remove("fullscreen");
-      k.go("textPortfolio");
+      navigate("textPortfolio");
     }, true);
 
     // allow Escape to close and return

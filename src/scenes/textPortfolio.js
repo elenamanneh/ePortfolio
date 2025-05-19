@@ -3,6 +3,7 @@
 import { portfolioMenu, returnPrompt }        from "../constants";
 import { k }                    from "../kaboomCtx";
 import { displayDialogue }      from "../utils";
+import { navigate } from "../router";
 
 k.scene("textPortfolio", () => {
 
@@ -22,30 +23,30 @@ k.scene("textPortfolio", () => {
   // 2) After the text finishes typing, wire up tap/click handlers
   document.getElementById("opt-edu")?.addEventListener("click", () => {
     document.getElementById("close").click();
-    k.go("education");
+    navigate("education");
   });
   document.getElementById("opt-exp")?.addEventListener("click", () => {
     document.getElementById("close").click();
-    k.go("experience");
+    navigate("experience");
   });
   document.getElementById("opt-proj")?.addEventListener("click", () => {
     document.getElementById("close").click();
-    k.go("projects");
+    navigate("projects");
   });
 
   // 3) Keyboard shortcuts
   const onKey = (e) => {
     if (e.key === "1") {
       document.getElementById("close").click();
-      k.go("education");
+      navigate("education");
     }
     if (e.key === "2") {
       document.getElementById("close").click();
-      k.go("experience");
+      navigate("experience");
     }
     if (e.key === "3") {
       document.getElementById("close").click();
-      k.go("projects");
+      navigate("projects");
     }
   };
   window.addEventListener("keydown", onKey);

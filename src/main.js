@@ -1,5 +1,6 @@
 import { k }          from "./kaboomCtx";
 import { loadAssets } from "./assets";
+import { getSceneFromPath, navigate } from "./router";
 
 loadAssets();           // load sprites & set background
 import "./scenes/outside";
@@ -9,11 +10,11 @@ import "./scenes/education";
 import "./scenes/experience";
 import "./scenes/projects";
 import "./scenes/contact";
-k.go("outside");
+k.go(getSceneFromPath());
 
 // wire up the Contact Me link
 document.getElementById("contact-link")?.addEventListener("click", () => {
-    k.go("contact");
+    navigate("contact");
   });
   
 

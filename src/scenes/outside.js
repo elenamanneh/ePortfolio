@@ -1,6 +1,7 @@
 import { scaleFactor, dialogueData, doorPrompt } from "../constants";
 import { k } from "../kaboomCtx";
 import { displayDialogue, setCamScale, playWalkAnim } from "../utils";
+import { navigate } from "../router";
 
 k.scene("outside", async () => {
 
@@ -75,7 +76,7 @@ k.scene("outside", async () => {
 
               player.isInDialogue = false;
               dialogueTriggered = false;
-              if (nextScene) k.go(nextScene);
+              if (nextScene) navigate(nextScene);
             });
 
             const choose = (scene) => {

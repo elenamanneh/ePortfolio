@@ -1,6 +1,7 @@
 import { contactContent, returnPrompt } from "../constants";
 import { k }               from "../kaboomCtx";
 import { displayDialogue } from "../utils";
+import { navigate }        from "../router";
 
 k.scene("contact", () => {
   document.getElementById("move-note").style.display = "none";
@@ -13,7 +14,7 @@ k.scene("contact", () => {
   // show instantly, content comes from constants.js
   displayDialogue(content, () => {
     ui.classList.remove("fullscreen");
-    k.go("outside");
+    // navigate("outside");
   }, true);
 
   // Escape to close & return

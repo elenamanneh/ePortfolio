@@ -1,6 +1,7 @@
 import { projects, projectsHeader, returnPrompt } from "../constants";
 import { k }                                   from "../kaboomCtx";
 import { displayDialogue }                     from "../utils";
+import { navigate }                            from "../router";
 
 k.scene("projects", () => {
   const ui = document.getElementById("textbox-container");
@@ -28,7 +29,7 @@ k.scene("projects", () => {
   // instant=true skips the typewriter
   displayDialogue(content, () => {
     ui.classList.remove("fullscreen");
-    k.go("textPortfolio");
+    navigate("textPortfolio");
   }, true);
 
   // Escape to close and go back

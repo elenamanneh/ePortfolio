@@ -1,6 +1,7 @@
 import { scaleFactor, dialogueData } from "../constants";
 import { k } from "../kaboomCtx";
 import { displayDialogue, setCamScale, playWalkAnim } from "../utils";
+import { navigate } from "../router";
 
 k.scene("inside", async () => {
 
