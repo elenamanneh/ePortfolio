@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elena Manneh's ePortfolio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+        <div class="note">
+          <p id="contact-link">
+            Contact Me
+          </p>
+          <p id="move-note" style="display: none; margin:0; line-height:1;">
+            Tap/Click around to move
+          </p>
+        </div>
+        <div id="textbox-container" style="display: none">
+          <div id="textbox">
+            <p id="dialogue" class="ui-text"></p>
+            <div class="btn-container">
+              <button id="close" class="ui-close-btn">Close</button>
+          </div>
+        </div>
+      </div>
+      <canvas id=game></canvas>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
