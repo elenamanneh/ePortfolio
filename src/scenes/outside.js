@@ -60,10 +60,17 @@ k.scene("outside", async () => {
             };
 
             setTimeout(() => {
-              document.getElementById("opt-explore")
-                .addEventListener("click", () => choose("inside"));
-              document.getElementById("opt-text")
-                .addEventListener("click", () => choose("textPortfolio"));
+
+              if (!player.isInDialogue) return;
+
+              const exploreBtn = document.getElementById("opt-explore");
+              if (exploreBtn) {
+                exploreBtn.addEventListener("click", () => choose("inside"));
+              }
+              const textBtn = document.getElementById("opt-text");
+              if (textBtn) {
+                textBtn.addEventListener("click", () => choose("textPortfolio"));
+              }
             }, doorPrompt.length * 5 + 50);
 
             window.addEventListener("keydown", (e) => {
