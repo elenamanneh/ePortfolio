@@ -50,6 +50,9 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
     onDisplayEnd();
     dialogueUI.style.display = "none";
     dialogue.innerHTML = "";
+
+    const canvas = document.querySelector("canvas");
+    canvas?.focus();
   }
 
   newClose.addEventListener("click", finish);
