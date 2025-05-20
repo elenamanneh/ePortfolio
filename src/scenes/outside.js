@@ -47,8 +47,32 @@ k.scene("outside", async () => {
             player.isInDialogue = true;
 
             let nextScene = null;
-            // use shared prompt
+            
+            // hide the Close button
+            // displayDialogue(doorPrompt, () => {
+
+            // grab references
+            const textboxContainer = document.getElementById("textbox-container");
+            const btnContainer     = textboxContainer.querySelector(".btn-container");
+
+            // 1) hide the Close button
+            btnContainer.style.display = "none";
+
+            // 2) swallow Enter/Q so displayDialogue won't close
+            const stopCloseKey = (e) => {
+              if (e.code === "Enter" || e.code === "KeyQ") {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+              }
+            };
+            document.addEventListener("keydown", stopCloseKey, true);
+
             displayDialogue(doorPrompt, () => {
+              btnContainer.style.display = "";
+              document.removeEventListener("keydown", stopCloseKey, true);
+
+            // end of remove close
+
               player.isInDialogue = false;
               dialogueTriggered = false;
               if (nextScene) k.go(nextScene);

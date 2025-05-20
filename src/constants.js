@@ -24,7 +24,9 @@ export const dialogueData = {
 
 // text for “door” choice
 export const doorPrompt = `
-  Do you want to explore inside the house or view a text version of the portfolio?<br>
+  <div style="margin-bottom: 1rem;">
+    Do you want to explore inside the house or view a text version of the portfolio?
+  </div>
   <strong><span id="opt-explore" style="cursor:pointer; text-decoration:underline;">
     [1] Explore inside the house
   </span></strong><br>
