@@ -1,6 +1,6 @@
 import { scaleFactor, dialogueData, doorPrompt } from "../constants";
 import { k } from "../kaboomCtx";
-import { displayDialogue, setCamScale } from "../utils";
+import { displayDialogue, setCamScale, playWalkAnim } from "../utils";
 
 k.scene("outside", async () => {
 
@@ -109,21 +109,26 @@ k.scene("outside", async () => {
     player.moveTo(target, player.speed);
     const angle = player.pos.angle(target);
     const low = 50, high = 125;
-    if (angle > low && angle < high) {
-      player.play("walk-up"); player.direction = "up"; return;
-    }
-    if (angle < -low && angle > -high) {
-      player.play("walk-down"); player.direction = "down"; return;
-    }
-    if (Math.abs(angle) > high) {
-      player.flipX = false;
-      player.play("walk-side"); player.direction = "right";
-      return;
-    }
-    if (Math.abs(angle) < low) {
-      player.flipX = true;
-      player.play("walk-side"); player.direction = "left";
-    }
+      // Up
+  if (angle > low && angle < high) {
+    playWalkAnim(player, "up");
+    return;
+  }
+  // Down
+  if (angle < -low && angle > -high) {
+    playWalkAnim(player, "down");
+    return;
+  }
+  // Right
+  if (Math.abs(angle) > high) {
+    playWalkAnim(player, "right");
+    return;
+  }
+  // Left
+  if (Math.abs(angle) < low) {
+    playWalkAnim(player, "left");
+    return;
+  }
   });
 
   const stop = () => {
@@ -137,9 +142,29 @@ k.scene("outside", async () => {
   k.onKeyDown(() => {
     const dirs = ["right","left","up","down"].map(k.isKeyDown);
     if (dirs.filter(Boolean).length !== 1 || player.isInDialogue) return;
-    if (dirs[0]) { player.flipX=false; player.play("walk-side"); player.direction="right"; player.move(player.speed,0); return; }
-    if (dirs[1]) { player.flipX=true;  player.play("walk-side"); player.direction="left"; player.move(-player.speed,0); return; }
-    if (dirs[2]) { player.play("walk-up"); player.direction="up"; player.move(0,-player.speed); return; }
-    if (dirs[3]) { player.play("walk-down"); player.direction="down"; player.move(0,player.speed); }
+  // Right
+  if (dirs[0]) {
+    playWalkAnim(player, "right");
+    player.move(player.speed, 0);
+    return;
+  }
+  // Left
+  if (dirs[1]) {
+    playWalkAnim(player, "left");
+    player.move(-player.speed, 0);
+    return;
+  }
+  // Up
+  if (dirs[2]) {
+    playWalkAnim(player, "up");
+    player.move(0, -player.speed);
+    return;
+  }
+  // Down
+  if (dirs[3]) {
+    playWalkAnim(player, "down");
+    player.move(0, player.speed);
+    return;
+  }
   });
 });

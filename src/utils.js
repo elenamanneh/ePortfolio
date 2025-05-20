@@ -1,47 +1,3 @@
-// displaying dialogue box
-// takes in text and function to call when the text is done displaying
-// export function displayDialogue(text, onDisplayEnd) {
-//     const dialogueUI = document.getElementById("textbox-container");
-//     const dialogue = document.getElementById("dialogue");
-
-//     // display dialogue
-//     // when we want to show dialogue, we change style display from none (in css) to block
-//     dialogueUI.style.display = "block";
-
-//     let index = 0;
-//     let currentText = "";
-//     const intervalRef = setInterval(() => {
-//         if (index < text.length) {
-//             currentText += text[index];
-//             dialogue.innerHTML = currentText; // don't use innerHTML to avoid xss, no user input here so okay
-//             // cannot use innerText because it will not render html tags
-//             index++;
-//             return;
-//         }
-//         clearInterval(intervalRef);
-//     }, 5);
-
-//     // close button
-//     const closeBtn = document.getElementById("close");
-
-//     function onCloseBtnClick() {
-//         onDisplayEnd(); // to set isInDialogue to false without having to pass player in
-//         dialogueUI.style.display = "none";
-//         dialogue.innerHTML = "";
-//         clearInterval(intervalRef);
-//         closeBtn.removeEventListener("click", onCloseBtnClick);
-//     }
-
-//     closeBtn.addEventListener("click", onCloseBtnClick);
-
-//     addEventListener("keypress", (key) => {
-//         if (key.code === "Enter" || key.code === "KeyQ") {
-//           closeBtn.click();
-//         }
-//     });
-// }
-
-// utils.js
 let activeInterval = null;
 let onKeyPressHandler = null;
 
@@ -118,3 +74,40 @@ export function setCamScale(k) {
     k.camScale(k.vec2(1.3));
 }
 
+// utils.js (add these at the bottom)
+
+const walkAnims = {
+  up:    "walk-up",
+  down:  "walk-down",
+  left:  "walk-side",
+  right: "walk-side",
+};
+
+const idleAnims = {
+  up:    "idle-up",
+  down:  "idle-down",
+  left:  "idle-side",
+  right: "idle-side",
+};
+
+/**
+ * Start the correct “walking” animation for `direction` 
+ * but only if it isn’t already playing.
+ */
+export function playWalkAnim(player, direction) {
+  const anim = walkAnims[direction];
+  if (player.curAnim() !== anim) {
+    // flip for left
+    player.flipX = (direction === "left");
+    player.play(anim);
+  }
+  player.direction = direction;
+}
+
+/**
+ * Switch to the idle animation for the last known `direction`.
+ */
+export function playIdleAnim(player) {
+  const anim = idleAnims[player.direction] || "idle-down";
+  player.play(anim);
+}
