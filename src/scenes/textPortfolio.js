@@ -55,7 +55,8 @@ k.scene("textPortfolio", () => {
   // 4) Escape to return to outside
   const onEsc = (e) => {
     if (e.key === "Escape") {
-      document.getElementById("close").click();
+      document.getElementById("close")?.click();
+      k.go("outside");
     }
   };
   window.addEventListener("keydown", onEsc);
