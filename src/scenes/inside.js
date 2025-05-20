@@ -41,8 +41,8 @@ k.scene("inside", async () => {
         // exit door: immediate scene change
         if (boundary.name === "exit") {
           player.onCollide("exit", () => {
-            document.getElementById("close")?.click();
-            player.isInDialogue = false;
+            // document.getElementById("close")?.click();
+            // player.isInDialogue = false;
             k.go("outside");
           });
         }
