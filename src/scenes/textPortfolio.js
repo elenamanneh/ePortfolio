@@ -20,20 +20,18 @@ k.scene("textPortfolio", () => {
   });
 
   // 2) After the text finishes typing, wire up tap/click handlers
-  setTimeout(() => {
-    document.getElementById("opt-edu")?.addEventListener("click", () => {
-      document.getElementById("close").click();
-      k.go("education");
-    });
-    document.getElementById("opt-exp")?.addEventListener("click", () => {
-      document.getElementById("close").click();
-      k.go("experience");
-    });
-    document.getElementById("opt-proj")?.addEventListener("click", () => {
-      document.getElementById("close").click();
-      k.go("projects");
-    });
-  }, portfolioMenu.length * 5 + 50);
+  document.getElementById("opt-edu")?.addEventListener("click", () => {
+    document.getElementById("close").click();
+    k.go("education");
+  });
+  document.getElementById("opt-exp")?.addEventListener("click", () => {
+    document.getElementById("close").click();
+    k.go("experience");
+  });
+  document.getElementById("opt-proj")?.addEventListener("click", () => {
+    document.getElementById("close").click();
+    k.go("projects");
+  });
 
   // 3) Keyboard shortcuts
   const onKey = (e) => {

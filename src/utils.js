@@ -16,8 +16,11 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
   dialogue.innerHTML      = "";
   dialogueUI.style.display = "block";
 
+  const effectiveInstant = instant || dialogueUI.classList.contains("fullscreen");
+
   // 3) start fresh typing (or dump text instantly)
-  if (instant) {
+  // if (instant) {
+  if (effectiveInstant) {
     dialogue.innerHTML = text;
   } else {
     let i = 0, out = "";
