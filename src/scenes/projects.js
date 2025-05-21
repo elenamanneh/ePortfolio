@@ -39,4 +39,13 @@ k.scene("projects", () => {
     }
   };
   window.addEventListener("keydown", onEsc);
+
+  setTimeout(() => {
+    const backBtn = document.getElementById("back-btn");
+    if (backBtn) {
+      backBtn.onclick = () => {
+        document.getElementById("close")?.click();
+      };
+    }
+  }, 0);
 });

@@ -66,9 +66,9 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
   }
 
   newClose.addEventListener("click", finish);
-  if (backBtn) {
-    backBtn.addEventListener("click", finish);
-  }
+  // if (backBtn) {
+  //   backBtn.addEventListener("click", finish);
+  // }
 
   onKeyPressHandler = (e) => {
     if (e.code === "Enter" || e.code === "KeyQ") {
