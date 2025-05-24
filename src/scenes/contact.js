@@ -20,20 +20,34 @@ k.scene("contact", () => {
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 
+  // unified cleanup + navigation
+  const cleanAndExit = () => {
+    // remove fullscreen styles
+    ui.classList.remove("fullscreen");
+
+    // tear down *this* scene’s handlers
+    window.removeEventListener("keydown", onEsc);
+    if (onOutsideChoice) {
+      window.removeEventListener("keydown", onOutsideChoice);
+    }
+    if (stopCloseKey) {
+      document.removeEventListener("keydown", stopCloseKey, true);
+    }
+
+    // finally navigate back
+    k.go(window.lastScene || "outside");
+  };
+
   displayDialogue(
     contactContent + returnPrompt,
-    () => {
-      ui.classList.remove("fullscreen");
-      k.go(window.lastScene || "outside");
-    },
+    cleanAndExit,
     true
   );
 
   // ─── 3) WIRE ESCAPE TO CLOSE ───────────────────────────────────
   onEsc = (e) => {
     if (e.key === "Escape") {
-      document.getElementById("close").click();
-      window.removeEventListener("keydown", onEsc);
+      document.getElementById("close")?.click();
     }
   };
   window.addEventListener("keydown", onEsc);
