@@ -1,3 +1,5 @@
+import { k } from "./kaboomCtx";
+
 let activeInterval = null;
 let onKeyPressHandler = null;
 
@@ -127,3 +129,27 @@ export function playIdleAnim(player) {
   const anim = idleAnims[player.direction] || "idle-down";
   player.play(anim);
 }
+
+/**
+ * Tear down all dialog‐related listeners, hide the UI, and navigate.
+ *
+ * @param {HTMLElement} ui            the textbox‐container element
+ * @param {Function}    onEsc         the Escape‐key listener
+ * @param {Function?}   onOutside     any outside‐choice listener (optional)
+ * @param {Function?}   stopCloseKey  your key‐swallowing listener (optional)
+ * @param {string?}     overrideScene explicit scene to go to (optional)
+ */
+export function cleanAndExit(ui, onEsc, onOutside, stopCloseKey, overrideScene) {
+  // 1) remove any listeners
+  window.removeEventListener("keydown", onEsc);
+  if (onOutside)    window.removeEventListener("keydown", onOutside);
+  if (stopCloseKey) document.removeEventListener("keydown", stopCloseKey, true);
+
+  // 2) hide UI
+  ui.classList.remove("fullscreen");
+  document.getElementById("textbox-container").style.display = "none";
+
+  // 3) navigate
+  k.go(overrideScene || window.lastScene || "outside");
+}
+

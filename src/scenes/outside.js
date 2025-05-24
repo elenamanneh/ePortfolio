@@ -1,7 +1,11 @@
-import { scaleFactor, dialogueData, doorPrompt } from "../constants";
-import { k } from "../kaboomCtx";
-import { displayDialogue, setCamScale, playWalkAnim } from "../utils";
-// import { navigate } from "../router";
+import { scaleFactor, doorPrompt } from "../constants";
+import { k }                                    from "../kaboomCtx";
+import {
+  displayDialogue,
+  setCamScale,
+  playWalkAnim,
+  cleanAndExit
+} from "../utils";
 
 export let onOutsideChoice;
 export let stopCloseKey;
@@ -59,14 +63,14 @@ k.scene("outside", async () => {
             if (dialogueTriggered || player.isInDialogue) return;
             dialogueTriggered = true;
             player.isInDialogue = true;
-            let nextScene = null;
 
-            // hide the Close button
+            let nextScene = null;
             const textboxContainer = document.getElementById("textbox-container");
+            // hide the Close button
             const btnContainer = textboxContainer.querySelector(".btn-container");
             btnContainer.style.display = "none";
 
-            // swallow Enter/Q
+            // swallow Enter/Q so user must pick 1 or 2
             stopCloseKey = (e) => {
               if (e.code === "Enter" || e.code === "KeyQ") {
                 e.preventDefault();
@@ -75,51 +79,45 @@ k.scene("outside", async () => {
             };
             document.addEventListener("keydown", stopCloseKey, true);
 
-            // show the door prompt
+            // show choice prompt and hand off cleanup + nav to cleanAndExit
             displayDialogue(doorPrompt, () => {
-              // restore Close button & release swallow
+              // restore Close button
               btnContainer.style.display = "";
-              document.removeEventListener("keydown", stopCloseKey, true);
-              stopCloseKey = null;
-
-              // remove old key listener
-              if (onOutsideChoice) {
-                window.removeEventListener("keydown", onOutsideChoice);
-                onOutsideChoice = null;
-              }
-
+              // shared cleanup + navigation
+              cleanAndExit(
+                textboxContainer,
+                /* onEsc */      null,
+                onOutsideChoice,
+                stopCloseKey,
+                nextScene
+              );
+              // reset globals & flags
+              onOutsideChoice = null;
+              stopCloseKey     = null;
               player.isInDialogue = false;
-              dialogueTriggered = false;
-              if (nextScene) k.go(nextScene);
+              dialogueTriggered   = false;
             });
 
-            // wire up the buttons (overwriting any old handlers)
-            const exploreBtn = document.getElementById("opt-explore");
-            if (exploreBtn) {
-              exploreBtn.onclick = () => {
-                console.log("inside");
-                nextScene = "inside";
-                document.getElementById("close").click();
-              };
-            }
-            const textBtn = document.getElementById("opt-text");
-            if (textBtn) {
-              textBtn.onclick = () => {
-                nextScene = "textPortfolio";
-                document.getElementById("close").click();
-              };
-            }
+            // wire up your 1/2 buttons
+            document.getElementById("opt-explore")?.addEventListener("click", () => {
+              nextScene = "inside";
+              document.getElementById("close")?.click();
+            });
+            document.getElementById("opt-text")?.addEventListener("click", () => {
+              nextScene = "textPortfolio";
+              document.getElementById("close")?.click();
+            });
 
             // global key choices
             onOutsideChoice = (e) => {
               if (!player.isInDialogue) return;
               if (e.key === "1") {
                 nextScene = "inside";
-                document.getElementById("close").click();
+                document.getElementById("close")?.click();
               }
               if (e.key === "2") {
                 nextScene = "textPortfolio";
-                document.getElementById("close").click();
+                document.getElementById("close")?.click();
               }
             };
             window.addEventListener("keydown", onOutsideChoice);
@@ -155,14 +153,13 @@ k.scene("outside", async () => {
     const target = k.toWorld(k.mousePos());
     player.moveTo(target, player.speed);
     const angle = player.pos.angle(target);
-    const low = 50, high = 125;
-    if (angle > low && angle < high) { playWalkAnim(player, "up"); return; }
-    if (angle < -low && angle > -high) { playWalkAnim(player, "down"); return; }
-    if (Math.abs(angle) > high) { playWalkAnim(player, "right"); return; }
-    if (Math.abs(angle) < low) { playWalkAnim(player, "left"); return; }
+    if (angle > 50   && angle < 125) playWalkAnim(player, "up");
+    else if (angle < -50 && angle > -125) playWalkAnim(player, "down");
+    else if (Math.abs(angle) > 125) playWalkAnim(player, "right");
+    else playWalkAnim(player, "left");
   });
   const stop = () => {
-    if (player.direction === "up") player.play("idle-up");
+    if (player.direction === "up")    player.play("idle-up");
     else if (player.direction === "down") player.play("idle-down");
     else player.play("idle-side");
   };
@@ -174,9 +171,9 @@ k.scene("outside", async () => {
     if (player.isInDialogue) return;
     const dirs = ["right", "left", "up", "down"].map(k.isKeyDown);
     if (dirs.filter(Boolean).length !== 1) return;
-    if (dirs[0]) { playWalkAnim(player, "right"); player.move(player.speed, 0); }
-    if (dirs[1]) { playWalkAnim(player, "left");  player.move(-player.speed, 0); }
+    if (dirs[0]) { playWalkAnim(player, "right"); player.move(player.speed,   0); }
+    if (dirs[1]) { playWalkAnim(player, "left");  player.move(-player.speed,  0); }
     if (dirs[2]) { playWalkAnim(player, "up");    player.move(0, -player.speed); }
-    if (dirs[3]) { playWalkAnim(player, "down");  player.move(0, player.speed); }
+    if (dirs[3]) { playWalkAnim(player, "down");  player.move(0,  player.speed); }
   });
 });

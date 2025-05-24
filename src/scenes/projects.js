@@ -1,12 +1,19 @@
-import { projects, projectsHeader, returnPrompt } from "../constants";
+// import { projects, projectsHeader, returnPrompt } from "../constants";
 import { k }                                   from "../kaboomCtx";
-import { displayDialogue }                     from "../utils";
+// import { displayDialogue }                     from "../utils";
+// src/scenes/projects.js
+
+import { projects, projectsHeader, returnPrompt } from "../constants";
+import { displayDialogue, cleanAndExit }         from "../utils";
 
 k.scene("projects", () => {
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 
-  // build one <details> block per project
+  // 1) which scene to return to
+  let onEsc;
+
+  // 2) build the HTML
   const projectDetails = projects
     .map((p) => `
       <details>
@@ -25,21 +32,22 @@ k.scene("projects", () => {
     ${returnPrompt}
   `;
 
-  // instant=true skips the typewriter
-  displayDialogue(content, () => {
-    ui.classList.remove("fullscreen");
-    k.go("textPortfolio");
-  }, true);
+  // 3) show dialogue, then shared cleanup → back to textPortfolio
+  displayDialogue(
+    content,
+    () => cleanAndExit(ui, onEsc, /* onOutside */ undefined, /* stopCloseKey */ undefined, "textPortfolio"),
+    true
+  );
 
-  // Escape to close and go back
-  const onEsc = (e) => {
+  // 4) Escape to close
+  onEsc = (e) => {
     if (e.key === "Escape") {
-      document.getElementById("close").click();
-      window.removeEventListener("keydown", onEsc);
+      document.getElementById("close")?.click();
     }
   };
   window.addEventListener("keydown", onEsc);
 
+  // 5) Back-button → same “close” path
   setTimeout(() => {
     const backBtn = document.getElementById("back-btn");
     if (backBtn) {
