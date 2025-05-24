@@ -14,11 +14,12 @@ k.scene("experience", () => {
   let onEsc;
 
   // 2) show content, then shared cleanup + nav → textPortfolio
-  displayDialogue(
-    experienceContent + returnPrompt,
-    () => cleanAndExit(ui, onEsc, /*onOutside*/ undefined, /*stopCloseKey*/ undefined, "textPortfolio"),
-    /* instant = */ true
-  );
+    // no override → cleanAndExit will use window.lastScene (set by textPortfolio or inside)
+    displayDialogue(
+      experienceContent + returnPrompt,
+      () => cleanAndExit(ui, onEsc),
+      true
+    );
 
   // 3) wire Escape → click Close
   onEsc = (e) => {

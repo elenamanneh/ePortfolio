@@ -1,17 +1,19 @@
 export const scaleFactor = 4;
 
 export const dialogueData = {
-  desk: `This is my PC. I work mostly in JavaScript/TypeScript these days.
-    I've made a couple of games in that language. I also like Golang and Python. Anyway regardless of the language, I just like programming.
-    Here is my <a href="https://github.com/jslegenddev" target="_blank">Github</a>!`,
-  "cs-degree": `This is my CS degree. I hung it on the wall because I'm proud of it. It was a very theoretical degree but I think it gave me a good foundation.`,
-  "sofa-table": `That's my sofa. I like to relax here and watch YouTube. 
-  I also make game programming tutorials on YouTube. Go sub to <a href="https://youtube.com/@jslegenddev" target="_blank">my channel</a>! (If you like the content)
-  You'll learn how I built this portfolio you're currently playing through!`,
-  kitchen: `This where I sleep. Great ideas comes when I'm lying on my bed. When an idea strikes, I often have to write it down or else I won't be able to sleep because my mental energy is consumed by it.`,
-  bookshelf: `There are a lot of programming books on my shelves. There is even one in French (I also speak French btw).
-  I probably only read one of them. Who else compulsively buys technical books without ever finishing them?`,
-  exit: `If you want to exit JSLegendDev's portfolio, just close the tab.`,
+  desk: `This is my desk. I worked here as a Software Developer and QA Analyst at theScore.
+  I built backend services using Elixir and GraphQL, improved real-time data pipelines, and increased platform reliability.
+  <span id="experience-link-inside" style="cursor:pointer; text-decoration:underline;">>> More about experience</span>`,
+  "cs-degree": `This is my Computer Science degree from the University of Toronto.
+  I specialized in Information Systems, gaining hands-on experience while studying topics like Software Engineering, Database Systems, Algorithm Design and Operating Systems.
+  <span id="education-link-inside" style="cursor:pointer; text-decoration:underline;">>> More about education</span>`,
+  kitchen: `This is the kitchen, this is where I spend most of my free time. I like to cook, try out new recipes, and just chill after a long day. It's my way of taking a break from screens and doing something hands-on.`,
+  bookshelf: `Here is a collection of some of my favorite CS projects.
+  There is *Pursuiter*, a job application website powered by AI to give feedback and filter applicants.
+  Then there is *Stocks Social Network*, where I built a full social platform and optimized a massive PostgreSQL database.
+  And *Walnut*, a course scheduler Android app to help UofT students plan their classes more easily.
+
+  <span id="projects-link-inside" style="cursor:pointer; text-decoration:underline;">>> More about projects</span>`
 };
 
 // text for “door” choice

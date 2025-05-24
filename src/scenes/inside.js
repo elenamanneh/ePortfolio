@@ -52,10 +52,73 @@ k.scene("inside", async () => {
         else if (boundary.name) {
           player.onCollide(boundary.name, () => {
             player.isInDialogue = true;
-            displayDialogue(
-              dialogueData[boundary.name],
-              () => { player.isInDialogue = false; }
-            );
+                // instant=true so our spans are injected immediately
+
+              displayDialogue(
+                dialogueData[boundary.name],
+                () => {
+                  // now that typing is done, wire up the links:
+                  document
+                    .getElementById("experience-link-inside")
+                    ?.addEventListener("click", () => {
+                      document.getElementById("close")?.click();
+                      k.go("experience");
+                    });
+
+                  document
+                    .getElementById("education-link-inside")
+                    ?.addEventListener("click", () => {
+                      document.getElementById("close")?.click();
+                      k.go("education");
+                    });
+
+                  document
+                    .getElementById("projects-link-inside")
+                    ?.addEventListener("click", () => {
+                      document.getElementById("close")?.click();
+                      k.go("projects");
+                    });
+
+                  // finally, allow movement again
+                  player.isInDialogue = false;
+                }
+              );
+
+                // displayDialogue(
+                //   dialogueData[boundary.name],
+                //   () => { player.isInDialogue = false; },
+                //   true
+                // );
+
+                // // now wire up any “inside” links
+                // setTimeout(() => {
+                //   document
+                //     .getElementById("experience-link-inside")
+                //     ?.addEventListener("click", () => {
+                //       document.getElementById("close")?.click();
+                //       k.go("experience");
+                //     });
+
+                //   document
+                //     .getElementById("projects-link-inside")
+                //     ?.addEventListener("click", () => {
+                //       document.getElementById("close")?.click();
+                //       k.go("projects");
+                //     });
+                //   document
+                //     .getElementById("education-link-inside")
+                //     ?.addEventListener("click", () => {
+                //       document.getElementById("close")?.click();
+                //       k.go("education");
+                //     });
+            
+                //   document
+                //     .getElementById("projects-link-inside")
+                //     ?.addEventListener("click", () => {
+                //       document.getElementById("close")?.click();
+                //       k.go("projects");
+                //     });
+                // }, 0);
           });
         }
       }

@@ -17,7 +17,7 @@ k.scene("education", () => {
   // 2) show the content, and on close call our shared helper with override
   displayDialogue(
     educationContent + returnPrompt,
-    () => cleanAndExit(ui, onEsc, /*onOutside*/ undefined, /*stopCloseKey*/ undefined, "textPortfolio"),
+    () => cleanAndExit(ui, onEsc),
     true
   );
 

@@ -35,7 +35,7 @@ k.scene("projects", () => {
   // 3) show dialogue, then shared cleanup → back to textPortfolio
   displayDialogue(
     content,
-    () => cleanAndExit(ui, onEsc, /* onOutside */ undefined, /* stopCloseKey */ undefined, "textPortfolio"),
+    () => cleanAndExit(ui, onEsc),
     true
   );
 

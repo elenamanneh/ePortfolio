@@ -4,6 +4,9 @@ import { k }                             from "../kaboomCtx";
 import { displayDialogue, cleanAndExit } from "../utils";
 
 k.scene("textPortfolio", () => {
+
+  window.lastScene = "textPortfolio";
+
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 

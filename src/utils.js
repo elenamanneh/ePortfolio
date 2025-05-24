@@ -140,16 +140,16 @@ export function playIdleAnim(player) {
  * @param {string?}     overrideScene explicit scene to go to (optional)
  */
 export function cleanAndExit(ui, onEsc, onOutside, stopCloseKey, overrideScene) {
-  // 1) remove any listeners
-  window.removeEventListener("keydown", onEsc);
+  // 1) strip out our handlers
+  if (onEsc)        window.removeEventListener("keydown", onEsc);
   if (onOutside)    window.removeEventListener("keydown", onOutside);
   if (stopCloseKey) document.removeEventListener("keydown", stopCloseKey, true);
 
-  // 2) hide UI
+  // 2) hide the dialogue UI
   ui.classList.remove("fullscreen");
   document.getElementById("textbox-container").style.display = "none";
 
   // 3) navigate
-  k.go(overrideScene || window.lastScene || "outside");
+  const dest = overrideScene ?? window.lastScene ?? "outside";
+  k.go(dest);
 }
-
