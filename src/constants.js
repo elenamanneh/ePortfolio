@@ -244,7 +244,7 @@ export const projects = [
 ];
 
 export const contactContent = `
-  <div style="
+  <div id="contact-box" style="
     display: flex;
     flex-direction: column;
     align-items: center;
