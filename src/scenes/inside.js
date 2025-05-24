@@ -4,6 +4,8 @@ import { displayDialogue, setCamScale, playWalkAnim } from "../utils";
 
 k.scene("inside", async () => {
 
+  window.lastScene = "inside";
+
   document.getElementById("move-note").style.display = "block";
   
   // load and position the interior map

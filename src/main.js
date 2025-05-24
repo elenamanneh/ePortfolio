@@ -9,6 +9,8 @@ import "./scenes/education";
 import "./scenes/experience";
 import "./scenes/projects";
 import "./scenes/contact";
+
+window.lastScene = "outside"; // default scene
 k.go("outside");
 
 // wire up the Contact Me link
