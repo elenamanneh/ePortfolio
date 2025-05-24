@@ -1,10 +1,14 @@
-/* custom font */
+/**
+ * Font
+ */
 @font-face {
   font-family: monogram;
   src: url(monogram.ttf);
 }
 
-/* base page */
+/**
+ * Base Page Styling
+ */
 body {
   font-family: monogram, monospace;
   font-size: 2rem;
@@ -17,7 +21,9 @@ body {
   position: relative;
 }
 
-/* dialogue box */
+/**
+ * Dialogue Box
+ */
 #textbox {
   position: absolute;
   left: 10%;
@@ -30,49 +36,55 @@ body {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: flex-start;
   align-items: flex-start;
   word-spacing: 0.2rem;
   filter: drop-shadow(0 0 0.75rem rgb(112, 112, 112));
 }
 
-/* fullscreen variant */
+#dialogue {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start; */
+  /* word-spacing: 0.2rem; */
+}
+
+/**
+ * Fullscreen Dialogue Variant
+ */
 #textbox-container.fullscreen #textbox {
   top: 5% !important;
   bottom: 5% !important;
   left: 5% !important;
   right: 5% !important;
   min-height: unset;
-  height: auto;
+  /* height: auto; */
+  max-height: 90vh;
+  overflow-x: hidden;
   overflow-y: auto;
+  /* flex-direction: row; */
+  
 }
 
-/* hide close button in fullscreen */
-#textbox-container.fullscreen .btn-container {
-  display: none;
+#textbox-container.fullscreen #contact-box {
+
+  max-height: none !important;
+  height: auto !important;
+
+  overflow-y: visible !important;
 }
 
-/* accordion styling */
-#textbox-container.fullscreen details {
-  margin-bottom: 1rem;
-}
-#textbox-container.fullscreen summary {
-  cursor: pointer;
-  font-weight: bold;
-}
-#textbox-container.fullscreen summary::marker {
-  content: "▶ ";
-}
-#textbox-container.fullscreen details[open] summary::marker {
-  content: "▼ ";
-}
-
-/* text and button styling */
+/**
+ * Buttons and UI Text
+ */
 .ui-text {
   margin: 0;
   user-select: none;
 }
+
 .ui-close-btn {
   font-family: monogram, monospace;
   border-style: none;
@@ -80,12 +92,59 @@ body {
   padding: 1rem;
   font-size: inherit;
 }
+
 .btn-container {
   align-self: flex-end;
   margin-top: 1rem;
 }
 
-/* sidebar notes */
+/**
+ * Back Button
+ */
+#back-btn {
+  display: none;
+  /* position: absolute; */
+  font-family: monogram, monospace;
+  border-style: none;
+  border-radius: 3px;
+  padding: 1rem;
+  font-size: inherit;
+}
+
+#textbox-container.fullscreen #back-btn {
+  display: block;
+}
+
+/**
+ * Accordion Styling (Fullscreen Only)
+ */
+#textbox-container.fullscreen details {
+  margin-bottom: 1rem;
+}
+
+#textbox-container.fullscreen summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#textbox-container.fullscreen summary::marker {
+  content: "▶ ";
+}
+
+#textbox-container.fullscreen details[open] summary::marker {
+  content: "▼ ";
+}
+
+/**
+ * Hide Close Button in Fullscreen
+ */
+#textbox-container.fullscreen .btn-container {
+  display: none;
+}
+
+/**
+ * Sidebar Notes
+ */
 .note {
   position: absolute;
   left: 5%;
@@ -96,12 +155,14 @@ body {
   user-select: none;
   padding: 0;
 }
+
 #contact-link {
   cursor: pointer;
   margin-top: 5vh;
   margin-bottom: 2vh;
   text-decoration: underline;
 }
+
 #move-note {
   display: none;
   margin: 0;

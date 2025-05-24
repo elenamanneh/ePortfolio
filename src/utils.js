@@ -39,6 +39,13 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
   closeBtn.replaceWith(closeBtn.cloneNode(true));
   const newClose = document.getElementById("close");
 
+  // also reset any old Back-handler
+  // const oldBack = document.getElementById("back-btn");
+  // if (oldBack) {
+  //   oldBack.replaceWith(oldBack.cloneNode(true));
+  // }
+  // const backBtn = document.getElementById("back-btn");
+
   if (onKeyPressHandler) {
     document.removeEventListener("keypress", onKeyPressHandler);
   }
@@ -59,6 +66,9 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
   }
 
   newClose.addEventListener("click", finish);
+  // if (backBtn) {
+  //   backBtn.addEventListener("click", finish);
+  // }
 
   onKeyPressHandler = (e) => {
     if (e.code === "Enter" || e.code === "KeyQ") {

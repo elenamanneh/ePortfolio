@@ -58,4 +58,14 @@ k.scene("textPortfolio", () => {
     }
   };
   window.addEventListener("keydown", onEsc);
+
+  setTimeout(() => {
+    const backBtn = document.getElementById("back-btn");
+    if (backBtn) {
+      backBtn.onclick = () => {
+        document.getElementById("close")?.click();
+        k.go("outside");
+      };
+    }
+  }, 0);
 });
