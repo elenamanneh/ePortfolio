@@ -98,15 +98,36 @@ k.scene("outside", async () => {
               dialogueTriggered   = false;
             });
 
+            // 3) listen for the “typingDone” event, then attach your span click-handlers
+            textboxContainer.addEventListener("typingDone", () => {
+              // now the spans *definitely* exist
+              const explore = document.getElementById("opt-explore");
+              const text    = document.getElementById("opt-text");
+              // sanity check
+              if (!explore || !text) {
+                return;
+              }
+              explore.addEventListener("click", () => {
+                nextScene = "inside";
+                document.getElementById("close")?.click();
+              }, { once: true });
+
+              text.addEventListener("click", () => {
+                nextScene = "textPortfolio";
+                document.getElementById("close")?.click();
+              }, { once: true });
+            }, { once: true });
+
+
             // wire up your 1/2 buttons
-            document.getElementById("opt-explore")?.addEventListener("click", () => {
-              nextScene = "inside";
-              document.getElementById("close")?.click();
-            });
-            document.getElementById("opt-text")?.addEventListener("click", () => {
-              nextScene = "textPortfolio";
-              document.getElementById("close")?.click();
-            });
+            // document.getElementById("opt-explore")?.addEventListener("click", () => {
+            //   nextScene = "inside";
+            //   document.getElementById("close")?.click();
+            // });
+            // document.getElementById("opt-text")?.addEventListener("click", () => {
+            //   nextScene = "textPortfolio";
+            //   document.getElementById("close")?.click();
+            // });
 
             // global key choices
             onOutsideChoice = (e) => {

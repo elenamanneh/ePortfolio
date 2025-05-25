@@ -33,6 +33,8 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
       } else {
         clearInterval(activeInterval);
         activeInterval = null;
+        const dialogueUI = document.getElementById("textbox-container");
+        dialogueUI.dispatchEvent(new CustomEvent("typingDone"));
       }
     }, 5);
   }
@@ -73,11 +75,14 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
   // }
 
   onKeyPressHandler = (e) => {
-    if (e.code === "Enter" || e.code === "KeyQ") {
+    // now also catch Escape
+    if (e.code === "Enter" || e.code === "KeyQ" || e.code === "Escape") {
       newClose.click();
     }
   };
+// you can keep this as `keypress` if you like, or switch to `keydown`
   document.addEventListener("keypress", onKeyPressHandler);
+
 }
 
  

@@ -5,6 +5,7 @@ import { displayDialogue, setCamScale, playWalkAnim } from "../utils";
 k.scene("inside", async () => {
 
   window.lastScene = "inside";
+  const textboxContainer = document.getElementById("textbox-container");
 
   document.getElementById("move-note").style.display = "block";
   
@@ -54,35 +55,84 @@ k.scene("inside", async () => {
             player.isInDialogue = true;
                 // instant=true so our spans are injected immediately
 
+              player.onCollide(boundary.name, () => {
+              player.isInDialogue = true;
+              const key = boundary.name;   // e.g. "desk", "cs-degree", "bookshelf"
+
+              // 1) install typingDone listener *before* starting the typewriter
+              const onTypingDone = () => {
+              // only wire the span that’s relevant for this boundary:
+              if (key === "desk") {
+                document
+                  .getElementById("experience-link-inside")
+                  ?.addEventListener("click", () => {
+                    document.getElementById("close")?.click();
+                    k.go("experience");
+                  }, { once: true });
+              }
+              else if (key === "cs-degree") {
+                document
+                  .getElementById("education-link-inside")
+                  ?.addEventListener("click", () => {
+                    document.getElementById("close")?.click();
+                    k.go("education");
+                  }, { once: true });
+              }
+              else if (key === "bookshelf") {
+                document
+                  .getElementById("projects-link-inside")
+                  ?.addEventListener("click", () => {
+                    document.getElementById("close")?.click();
+                    k.go("projects");
+                  }, { once: true });
+              }
+
+              // remove the typingDone listener
+              textboxContainer.removeEventListener("typingDone", onTypingDone);
+            };
+            textboxContainer.addEventListener("typingDone", onTypingDone, { once: true });
+
+              // 2) fire off the typewriter.  When the user clicks “Close”,
+              //    this callback runs *after* the spans exist but we won’t
+              //    wire them here anymore—just reset state.
               displayDialogue(
-                dialogueData[boundary.name],
+                dialogueData[key],
                 () => {
-                  // now that typing is done, wire up the links:
-                  document
-                    .getElementById("experience-link-inside")
-                    ?.addEventListener("click", () => {
-                      document.getElementById("close")?.click();
-                      k.go("experience");
-                    });
-
-                  document
-                    .getElementById("education-link-inside")
-                    ?.addEventListener("click", () => {
-                      document.getElementById("close")?.click();
-                      k.go("education");
-                    });
-
-                  document
-                    .getElementById("projects-link-inside")
-                    ?.addEventListener("click", () => {
-                      document.getElementById("close")?.click();
-                      k.go("projects");
-                    });
-
-                  // finally, allow movement again
                   player.isInDialogue = false;
                 }
               );
+            });
+
+
+              // displayDialogue(
+              //   dialogueData[boundary.name],
+              //   () => {
+              //     // now that typing is done, wire up the links:
+              //     document
+              //       .getElementById("experience-link-inside")
+              //       ?.addEventListener("click", () => {
+              //         document.getElementById("close")?.click();
+              //         k.go("experience");
+              //       });
+
+              //     document
+              //       .getElementById("education-link-inside")
+              //       ?.addEventListener("click", () => {
+              //         document.getElementById("close")?.click();
+              //         k.go("education");
+              //       });
+
+              //     document
+              //       .getElementById("projects-link-inside")
+              //       ?.addEventListener("click", () => {
+              //         document.getElementById("close")?.click();
+              //         k.go("projects");
+              //       });
+
+              //     // finally, allow movement again
+              //     player.isInDialogue = false;
+              //   }
+              // );
 
                 // displayDialogue(
                 //   dialogueData[boundary.name],
