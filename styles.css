@@ -1,0 +1,175 @@
+/**
+ * Font
+ */
+@font-face {
+  font-family: monogram;
+  src: url(monogram.ttf);
+}
+
+/* hide by default */
+.desktop-only {
+  display: none;
+}
+
+/* show once the screen is at least 1024px wide (desktop) */
+@media (min-width: 1024px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+/**
+ * Base Page Styling
+ */
+body {
+  font-family: monogram, monospace;
+  font-size: 2rem;
+  overflow: hidden;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/**
+ * Dialogue Box
+ */
+#textbox {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 2vh;
+  min-height: 15vh;
+  background: white;
+  border-radius: 3px;
+  outline-style: solid;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  word-spacing: 0.2rem;
+  filter: drop-shadow(0 0 0.75rem rgb(112, 112, 112));
+}
+
+#dialogue {
+  display: flex;
+  flex-direction: column;
+}
+
+/**
+ * Fullscreen Dialogue Variant
+ */
+#textbox-container.fullscreen #textbox {
+  top: 5% !important;
+  bottom: 5% !important;
+  left: 5% !important;
+  right: 5% !important;
+  min-height: unset;
+  max-height: 90vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  
+}
+
+#textbox-container.fullscreen #contact-box {
+
+  max-height: none !important;
+  height: auto !important;
+
+  overflow-y: visible !important;
+}
+
+/**
+ * Buttons and UI Text
+ */
+.ui-text {
+  margin: 0;
+  user-select: none;
+}
+
+.ui-close-btn {
+  font-family: monogram, monospace;
+  border-style: none;
+  border-radius: 3px;
+  padding: 1rem;
+  font-size: inherit;
+}
+
+.btn-container {
+  align-self: flex-end;
+  margin-top: 1rem;
+}
+
+
+/**
+ * Back Button
+ */
+#back-btn {
+  display: none;
+  font-family: monogram, monospace;
+  border-style: none;
+  border-radius: 3px;
+  padding: 1rem;
+  font-size: inherit;
+}
+
+#textbox-container.fullscreen #back-btn {
+  display: block;
+}
+
+/**
+ * Accordion Styling (Fullscreen Only)
+ */
+#textbox-container.fullscreen details {
+  margin-bottom: 1rem;
+}
+
+#textbox-container.fullscreen summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#textbox-container.fullscreen summary::marker {
+  content: "▶ ";
+}
+
+#textbox-container.fullscreen details[open] summary::marker {
+  content: "▼ ";
+}
+
+/**
+ * Hide Close Button in Fullscreen
+ */
+#textbox-container.fullscreen .btn-container {
+  display: none;
+}
+
+/**
+ * Sidebar Notes
+ */
+.note {
+  position: absolute;
+  left: 5%;
+  top: 1vh;
+  display: flex;
+  flex-direction: column;
+  color: rgb(238, 238, 238);
+  user-select: none;
+  padding: 0;
+}
+
+#contact-link {
+  cursor: pointer;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+  text-decoration: underline;
+}
+
+#move-note {
+  display: none;
+  margin: 0;
+  line-height: 1;
+}
