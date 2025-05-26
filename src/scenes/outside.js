@@ -35,7 +35,7 @@ k.scene("outside", async () => {
   /*
    * Load exterior map and background sprite
    */
-  const mapData = await (await fetch("/spritesheets/map_outside.json")).json();
+  const mapData = await (await fetch("spritesheets/map_outside.json")).json();
   const map = k.add([
     k.sprite("map_outside"),
     k.anchor("center"),

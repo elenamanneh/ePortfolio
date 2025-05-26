@@ -16,7 +16,7 @@ k.scene("inside", async () => {
   /*
    * Load and position the interior map
    */
-  const mapData = await (await fetch("/spritesheets/map.json")).json();
+  const mapData = await (await fetch("spritesheets/map.json")).json();
   const map = k.add([k.sprite("map"), k.pos(0, 0), k.scale(scaleFactor)]);
 
   /*
