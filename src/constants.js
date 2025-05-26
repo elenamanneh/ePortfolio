@@ -46,7 +46,7 @@ export const doorPrompt = `
  */
 export const portfolioMenu = `
   <h2>Elena Manneh</h2>
-  <p>Hi—I’m Elena, a U of T Software Developer & Statistics student. I build AI-powered web apps, optimize F1 race strategies, and love clean React/Node code.</p>
+  <p>Senior U of T Comp. Sci. student with a strong background in fullstack development, and experience in operating systems, database system technology, and artificial inteliigence.</p>
   <hr/>
   <p>
     <span id="opt-edu" style="cursor:pointer; text-decoration:underline;">[1] Education</span><br/>
