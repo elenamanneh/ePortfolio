@@ -17,11 +17,11 @@ k.scene("experience", () => {
    */
   let onEsc;
 
-    displayDialogue(
-      experienceContent + returnPrompt,
-      () => cleanAndExit(ui, onEsc),
-      true
-    );
+  displayDialogue(
+    experienceContent + returnPrompt,
+    () => cleanAndExit(ui, onEsc),
+    true,
+  );
 
   /*
    * Close dialog on Escape key

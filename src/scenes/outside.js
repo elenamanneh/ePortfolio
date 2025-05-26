@@ -4,7 +4,7 @@ import {
   displayDialogue,
   setCamScale,
   playWalkAnim,
-  cleanAndExit
+  cleanAndExit,
 } from "../utils";
 
 export let onOutsideChoice;
@@ -66,7 +66,9 @@ k.scene("outside", async () => {
     if (layer.name === "boundaries") {
       for (const boundary of layer.objects) {
         map.add([
-          k.area({ shape: new k.Rect(k.vec2(0), boundary.width, boundary.height) }),
+          k.area({
+            shape: new k.Rect(k.vec2(0), boundary.width, boundary.height),
+          }),
           k.body({ isStatic: true }),
           k.pos(boundary.x, boundary.y),
           boundary.name,
@@ -79,12 +81,14 @@ k.scene("outside", async () => {
             player.isInDialogue = true;
 
             let nextScene = null;
-            const textboxContainer = document.getElementById("textbox-container");
+            const textboxContainer =
+              document.getElementById("textbox-container");
 
             /*
              * Temporarily disable Close button until choice is made
              */
-            const btnContainer = textboxContainer.querySelector(".btn-container");
+            const btnContainer =
+              textboxContainer.querySelector(".btn-container");
             btnContainer.style.display = "none";
 
             /*
@@ -108,7 +112,7 @@ k.scene("outside", async () => {
                 null,
                 onOutsideChoice,
                 stopCloseKey,
-                nextScene
+                nextScene,
               );
               onOutsideChoice = null;
               stopCloseKey = null;
@@ -119,22 +123,34 @@ k.scene("outside", async () => {
             /*
              * Attach click handlers after typewriter finishes
              */
-            textboxContainer.addEventListener("typingDone", () => {
-              const explore = document.getElementById("opt-explore");
-              const text = document.getElementById("opt-text");
-              if (!explore || !text) {
-                return;
-              }
-              explore.addEventListener("click", () => {
-                nextScene = "inside";
-                document.getElementById("close")?.click();
-              }, { once: true });
+            textboxContainer.addEventListener(
+              "typingDone",
+              () => {
+                const explore = document.getElementById("opt-explore");
+                const text = document.getElementById("opt-text");
+                if (!explore || !text) {
+                  return;
+                }
+                explore.addEventListener(
+                  "click",
+                  () => {
+                    nextScene = "inside";
+                    document.getElementById("close")?.click();
+                  },
+                  { once: true },
+                );
 
-              text.addEventListener("click", () => {
-                nextScene = "textPortfolio";
-                document.getElementById("close")?.click();
-              }, { once: true });
-            }, { once: true });
+                text.addEventListener(
+                  "click",
+                  () => {
+                    nextScene = "textPortfolio";
+                    document.getElementById("close")?.click();
+                  },
+                  { once: true },
+                );
+              },
+              { once: true },
+            );
 
             /*
              * Handle keyboard choice 1/2
@@ -163,10 +179,7 @@ k.scene("outside", async () => {
     if (layer.name === "spawnpoints") {
       for (const entity of layer.objects) {
         if (entity.name === "player") {
-          player.pos = k.vec2(
-            entity.x * scaleFactor,
-            entity.y * scaleFactor
-          );
+          player.pos = k.vec2(entity.x * scaleFactor, entity.y * scaleFactor);
           k.add(player);
           break;
         }
@@ -189,13 +202,13 @@ k.scene("outside", async () => {
     const target = k.toWorld(k.mousePos());
     player.moveTo(target, player.speed);
     const angle = player.pos.angle(target);
-    if (angle > 50   && angle < 125) playWalkAnim(player, "up");
+    if (angle > 50 && angle < 125) playWalkAnim(player, "up");
     else if (angle < -50 && angle > -125) playWalkAnim(player, "down");
     else if (Math.abs(angle) > 125) playWalkAnim(player, "right");
     else playWalkAnim(player, "left");
   });
   const stop = () => {
-    if (player.direction === "up")    player.play("idle-up");
+    if (player.direction === "up") player.play("idle-up");
     else if (player.direction === "down") player.play("idle-down");
     else player.play("idle-side");
   };
@@ -209,9 +222,21 @@ k.scene("outside", async () => {
     if (player.isInDialogue) return;
     const dirs = ["right", "left", "up", "down"].map(k.isKeyDown);
     if (dirs.filter(Boolean).length !== 1) return;
-    if (dirs[0]) { playWalkAnim(player, "right"); player.move(player.speed,   0); }
-    if (dirs[1]) { playWalkAnim(player, "left");  player.move(-player.speed,  0); }
-    if (dirs[2]) { playWalkAnim(player, "up");    player.move(0, -player.speed); }
-    if (dirs[3]) { playWalkAnim(player, "down");  player.move(0,  player.speed); }
+    if (dirs[0]) {
+      playWalkAnim(player, "right");
+      player.move(player.speed, 0);
+    }
+    if (dirs[1]) {
+      playWalkAnim(player, "left");
+      player.move(-player.speed, 0);
+    }
+    if (dirs[2]) {
+      playWalkAnim(player, "up");
+      player.move(0, -player.speed);
+    }
+    if (dirs[3]) {
+      playWalkAnim(player, "down");
+      player.move(0, player.speed);
+    }
   });
 });

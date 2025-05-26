@@ -19,7 +19,7 @@ k.scene("education", () => {
   displayDialogue(
     educationContent + returnPrompt,
     () => cleanAndExit(ui, onEsc),
-    true
+    true,
   );
 
   /*

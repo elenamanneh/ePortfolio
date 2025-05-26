@@ -24,5 +24,5 @@ k.go("outside");
  * Handle 'Contact Me' click to navigate to the contact scene
  */
 document.getElementById("contact-link")?.addEventListener("click", () => {
-    k.go("contact");
-  });
+  k.go("contact");
+});

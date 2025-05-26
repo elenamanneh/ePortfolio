@@ -29,7 +29,7 @@ k.scene("textPortfolio", () => {
       window.removeEventListener("keydown", onKey);
       cleanAndExit(ui, onEsc, null, null, nextScene);
     },
-    true
+    true,
   );
 
   /*

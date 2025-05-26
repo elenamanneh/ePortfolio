@@ -16,12 +16,12 @@ k.scene("projects", () => {
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 
-
   /*
    * Build HTML content for each project
    */
   const projectDetails = projects
-    .map((p) => `
+    .map(
+      (p) => `
       <details>
         <summary>${p.name}</summary>
         <ul>
@@ -29,7 +29,8 @@ k.scene("projects", () => {
         </ul>
         ${p.github ? `<p><a href="${p.github}" target="_blank">GitHub Repo</a></p>` : ""}
       </details>
-    `)
+    `,
+    )
     .join("");
 
   const content = `

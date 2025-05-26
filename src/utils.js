@@ -11,9 +11,9 @@ let onKeyPressHandler = null;
  * @param {boolean}  instant        If true, bypass typewriter and show text instantly
  */
 export function displayDialogue(text, onDisplayEnd, instant = false) {
-  const dialogueUI  = document.getElementById("textbox-container");
-  const dialogue    = document.getElementById("dialogue");
-  const closeBtn    = document.getElementById("close");
+  const dialogueUI = document.getElementById("textbox-container");
+  const dialogue = document.getElementById("dialogue");
+  const closeBtn = document.getElementById("close");
 
   // clear any ongoing typewriter animation
   if (activeInterval) {
@@ -25,12 +25,14 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
   dialogue.innerHTML = "";
   dialogueUI.style.display = "block";
 
-  const effectiveInstant = instant || dialogueUI.classList.contains("fullscreen");
+  const effectiveInstant =
+    instant || dialogueUI.classList.contains("fullscreen");
 
   if (effectiveInstant) {
     dialogue.innerHTML = text;
   } else {
-    let i = 0, out = "";
+    let i = 0,
+      out = "";
     activeInterval = setInterval(() => {
       if (i < text.length) {
         out += text[i++];
@@ -89,25 +91,25 @@ export function displayDialogue(text, onDisplayEnd, instant = false) {
  * @param {object} k  Kaboom instance
  */
 export function setCamScale(k) {
-    const resizeFactor = k.width() / k.height();
-    if (resizeFactor < 1) {
-        k.camScale(k.vec2(1));
-        return;
-    }
-    k.camScale(k.vec2(1.3));
+  const resizeFactor = k.width() / k.height();
+  if (resizeFactor < 1) {
+    k.camScale(k.vec2(1));
+    return;
+  }
+  k.camScale(k.vec2(1.3));
 }
 
 const walkAnims = {
-  up:    "walk-up",
-  down:  "walk-down",
-  left:  "walk-side",
+  up: "walk-up",
+  down: "walk-down",
+  left: "walk-side",
   right: "walk-side",
 };
 
 const idleAnims = {
-  up:    "idle-up",
-  down:  "idle-down",
-  left:  "idle-side",
+  up: "idle-up",
+  down: "idle-down",
+  left: "idle-side",
   right: "idle-side",
 };
 
@@ -121,7 +123,7 @@ export function playWalkAnim(player, direction) {
   const anim = walkAnims[direction];
   if (player.curAnim() !== anim) {
     // flip for left
-    player.flipX = (direction === "left");
+    player.flipX = direction === "left";
     player.play(anim);
   }
   player.direction = direction;
@@ -146,9 +148,15 @@ export function playIdleAnim(player) {
  * @param {Function?}   stopCloseKey  Key-swallowing listener
  * @param {string?}     overrideScene Scene to go to (defaults to lastScene)
  */
-export function cleanAndExit(ui, onEsc, onOutside, stopCloseKey, overrideScene) {
-  if (onEsc)        window.removeEventListener("keydown", onEsc);
-  if (onOutside)    window.removeEventListener("keydown", onOutside);
+export function cleanAndExit(
+  ui,
+  onEsc,
+  onOutside,
+  stopCloseKey,
+  overrideScene,
+) {
+  if (onEsc) window.removeEventListener("keydown", onEsc);
+  if (onOutside) window.removeEventListener("keydown", onOutside);
   if (stopCloseKey) document.removeEventListener("keydown", stopCloseKey, true);
 
   ui.classList.remove("fullscreen");

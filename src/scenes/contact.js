@@ -32,7 +32,7 @@ k.scene("contact", () => {
   displayDialogue(
     contactContent + returnPrompt,
     () => cleanAndExit(ui, onEsc, onOutsideChoice, stopCloseKey),
-    true
+    true,
   );
 
   /*
