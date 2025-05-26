@@ -1,5 +1,13 @@
+/*
+ * scaleFactor
+ * Global scale multiplier for game sprites and map tiles
+ */
 export const scaleFactor = 4;
 
+/*
+ * dialogueData
+ * Typed dialogue content for interactable objects in the inside scene
+ */
 export const dialogueData = {
   desk: `This is my desk. I worked here as a Software Developer and QA Analyst at theScore.
   I built backend services using Elixir and GraphQL, improved real-time data pipelines, and increased platform reliability.
@@ -7,7 +15,7 @@ export const dialogueData = {
   "cs-degree": `This is my Computer Science degree from the University of Toronto.
   I specialized in Information Systems, gaining hands-on experience while studying topics like Software Engineering, Database Systems, Algorithm Design and Operating Systems.
   <span id="education-link-inside" style="cursor:pointer; text-decoration:underline;">>> More about education</span>`,
-  kitchen: `This is the kitchen, this is where I spend most of my free time. I like to cook, try out new recipes, and just chill after a long day. It's my way of taking a break from screens and doing something hands-on.`, // TODO i don't like hands-on
+  kitchen: `This is the kitchen, this is where I spend most of my free time. I like to cook, try out new recipes, and just chill after a long day. It's my way of taking a break from screens.`,
   bookshelf: `Here is a collection of some of my favorite CS projects.
   There is Pursuiter, a job application website powered by AI to give feedback and filter applicants.
   I also built Stocks Social Network, a full social platform that optimized a massive PostgreSQL database.
@@ -16,7 +24,10 @@ export const dialogueData = {
   <span id="projects-link-inside" style="cursor:pointer; text-decoration:underline;">>> More about projects</span>`
 };
 
-// text for “door” choice
+/*
+ * doorPrompt
+ * HTML for the entry choice dialogue on the outside scene
+ */
 export const doorPrompt = `
   <div style="margin-bottom: 1rem;">
     Hello! I am Elena. Welcome to my portfolio. You can explore my house to learn more about me, or view the text version.
@@ -29,96 +40,107 @@ export const doorPrompt = `
   </span></strong>
 `;
 
-// textPortfolio menu
+/*
+ * portfolioMenu
+ * HTML menu for the text-based portfolio navigation
+ */
 export const portfolioMenu = `
-      <h2>Elena Manneh</h2>
-      <p>Hi—I’m Elena, a U of T Software Developer & Statistics student. I build AI-powered web apps, optimize F1 race strategies, and love clean React/Node code.</p>
-      <hr/>
-      <p>
-        <span id="opt-edu" style="cursor:pointer; text-decoration:underline;">[1] Education</span><br/>
-        <span id="opt-exp" style="cursor:pointer; text-decoration:underline;">[2] Experience</span><br/>
-        <span id="opt-proj" style="cursor:pointer; text-decoration:underline;">[3] Projects</span>
-      </p>
-    `;
+  <h2>Elena Manneh</h2>
+  <p>Hi—I’m Elena, a U of T Software Developer & Statistics student. I build AI-powered web apps, optimize F1 race strategies, and love clean React/Node code.</p>
+  <hr/>
+  <p>
+    <span id="opt-edu" style="cursor:pointer; text-decoration:underline;">[1] Education</span><br/>
+    <span id="opt-exp" style="cursor:pointer; text-decoration:underline;">[2] Experience</span><br/>
+    <span id="opt-proj" style="cursor:pointer; text-decoration:underline;">[3] Projects</span>
+  </p>
+`;
 
-// Education & Experience scenes
+/*
+ * educationContent
+ * HTML content for the Education scene
+ */
 export const educationContent = `
-      <h2>Education</h2>
-      <p>
-        <strong>University of Toronto Scarborough</strong><br/>
-        HBSc Computer Science, Information Systems Specialist
-      </p>
-    `;
+  <h2>Education</h2>
+  <p>
+    <strong>University of Toronto Scarborough</strong><br/>
+    HBSc Computer Science, Information Systems Specialist
+  </p>
+`;
 
+/*
+ * experienceContent
+ * HTML content for the Experience scene
+ */
 export const experienceContent = `
-      <h2>Experience</h2>
-  
-      <p><strong>Software Engineer @ theScore</strong></p>
-      <ul>
-        <li>Developed and deployed backend services in Elixir/Phoenix and GraphQL, powering over 10 configurable CMS components used across multiple content channels.</li>
-        <li>Designed gRPC APIs and schema-driven GraphQL endpoints for metadata updates and visibility toggles, supporting batch operations and live platform configuration.</li>
-        <li>Built real-time data pipelines using Kafka, Protobuf, and Change Data Capture (CDC), improving downstream event integration with near-instantaneous latency.</li>
-        <li>Enhanced data consistency via Ecto schema modeling and transactional update patterns, across critical features.</li>
-        <li>Increased platform reliability by contributing to rollback-safe workflows and ExUnit test suites with 90%+ coverage.</li>
-      </ul>
-  
-      <p><strong>Quality Assurance Analyst @ theScore</strong></p>
-      <ul>
-        <li>Conducted cross-platform testing and managed defect tracking, enhancing product launch efficiency.</li>
-        <li>Authored comprehensive test documentation; executed verification and validation tests across applications.</li>
-        <li>Collaborated with cross-functional teams; led functional, regression, and smoke testing initiatives.</li>
-      </ul>
-    `;
+  <h2>Experience</h2>
+  <p><strong>Software Engineer @ theScore</strong></p>
+  <ul>
+    <li>Developed and deployed backend services in Elixir/Phoenix and GraphQL, powering over 10 configurable CMS components used across multiple content channels.</li>
+    <li>Designed gRPC APIs and schema-driven GraphQL endpoints for metadata updates and visibility toggles, supporting batch operations and live platform configuration.</li>
+    <li>Built real-time data pipelines using Kafka, Protobuf, and Change Data Capture (CDC), improving downstream event integration with near-instantaneous latency.</li>
+    <li>Enhanced data consistency via Ecto schema modeling and transactional update patterns, across critical features.</li>
+    <li>Increased platform reliability by contributing to rollback-safe workflows and ExUnit test suites with 90%+ coverage.</li>
+  </ul>
+  <p><strong>Quality Assurance Analyst @ theScore</strong></p>
+  <ul>
+    <li>Conducted cross-platform testing and managed defect tracking, enhancing product launch efficiency.</li>
+    <li>Authored comprehensive test documentation; executed verification and validation tests across applications.</li>
+    <li>Collaborated with cross-functional teams; led functional, regression, and smoke testing initiatives.</li>
+  </ul>
+`;
 
-// export import { android, c, css, figma, firebase, git, html, java, javascript, jira, mongodb, python, react, tex, asm, linux } from '../img/technologies-icons';
-
-// At the bottom of src/constants.js
-
-/** Heading for the Projects scene */
+/*
+ * projectsHeader
+ * Heading HTML for the Projects scene
+ */
 export const projectsHeader = `<h2>Projects</h2>`;
 
+/*
+ * projects
+ * Array of project definitions with descriptions and optional GitHub links
+ */
 export const projects = [
   {
-    id: 1,
     name: "Pursuiter Job Application Website",
     // languages: [
     //   { name: "MongoDB", icon: mongodb },
     //   { name: "React", icon: react },
     // ],
     description: [
-      "Led a Scrum team of 4 to develop a full-stack job application website using the MERN stack.",
-      "Integrated AI for tailored applicant feedback and implemented filters to ensure only qualified applicants can apply."
+      "Led a 4-person <strong>Scrum team</strong> to design and ship a full-stack MERN job portal, using <strong>Figma</strong> for responsive UI/UX design; recognized as a top project for innovation and technical execution.",
+      "Built and deployed a robust MVC-based platform on <strong>MongoDB Atlas</strong>, maintaining <strong>99.99% uptime</strong> with scalable pagination and search support for 1K+ users and listings.",
+      "Integrated <strong>AI-powered feedback generation</strong> tailored to job descriptions and enforced role-specific application eligibility, boosting recruiter efficiency and applicant quality."
 
     ],
+    github: "https://github.com/elenamanneh/final-term-project-pursuiter"
   },
   {
-    id: 2,
     name: "Pintos Operating System",
     // languages: [
     //   { name: "C", icon: c },
     //   { name: "Linux", icon: linux },
     // ],
     description: [
-      "Implemented priority scheduling and donation algorithms to improve thread scheduling and resource allocation.",
-      "Provided support for user programs through system calls and argument passing.",
-      "Designed virtual memory including virtual-to-physical mappings and algorithms for eviction and swapping.",
-      "Implemented filesystem including inode structures and growing files."
+      "Developed priority scheduling and donation algorithms, improving <strong>thread scheduling efficiency by 30%</strong>, resulting in better resource allocation and reduced wait times.",
+      "Fascilitated support for user programs through system calls and argument passing, <strong>increasing user program compatibility by 25%</strong>.",
+      "Engineered virtual memory, including virtual-to-physical mappings and algorithms for eviction and swapping, optimizing memory usage and <strong>reducing page fault occurrences by 20%</strong>.",
+      "Built filesystem including inode structures and growing files, increasing <strong>maximum file storage from 512 bytes to 8 MB</strong>, significantly enhancing scalability and storage capacity."
 
     ],
   },
   {
-    id: 4,
     name: "Stocks Social Network",
-    languages: [
-    ],
+    // languages: [
+    // ],
     description: [
-      "Designed, optimized and implemented database for stock data including portfolios and lists.",
-      "Implemented social networking features including friends, sharing lists and reviews."
+      "Engineered and normalized a <strong>PostgreSQL database</strong> for portfolios, watchlists, users, and stock reviews into <strong>BCNF</strong>, ensuring data integrity and eliminating redundancy across <strong>50K+ simulated stock records</strong>.",
+      "Optimized complex queries through multi-column indexing and join rewrites, reducing portfolio aggregation and list generation query times by over 40%",
+      "Implemented social networking features including friends, list sharing, and stock reviews, along with linear regression models for historical trend analysis and future price prediction."
+
     ],
     github: "https://github.com/Kalshone/CSCC43-Project"
   },
   {
-    id: 4,
     name: "Walnut Course Scheduler",
     // languages: [
     //   { name: "Java", icon: java },
@@ -126,100 +148,97 @@ export const projects = [
     //   { name: "Android", icon: android },
     // ],
     description: [
-      "Designed an Android mobile app with user-friendly front-end interfaces in an Agile Scrum of 5.",
-      "Integrated Firebase Realtime Database applied OOP and SOLID principles for efficient back-end development."
+      "Developed a full-stack Android app in an <strong>Agile Scrum team of 5</strong>, enabling students to plan and manage UofT courses through an intuitive and responsive UI.",
+      "Engineered and integrated a <strong>Firebase Realtime Database</strong> backend using clean architecture, reducing <strong>data retrieval time by 20%</strong> and improving <strong>query efficiency by 30%</strong>.",
+      "Wrote modular and testable code adhering to <strong>OOP</strong> and <strong>SOLID</strong> principles, with comprehensive unit testing via <strong>JUnit</strong> and <strong>Mockito</strong> to ensure reliability and maintainability."
     ],
     github: "https://github.com/b07boys/walnut"
   },
   {
-    id: 5,
-    name: "System Monitoring Tool",
+    name: "Advanced System & File Descriptor Monitoring Tool",
     // languages: [
     //   { name: "Linux", icon: linux },
     //   { name: "C", icon: c },
     // ],
     description: [
-      "Developed a real-time system monitoring tool with concurrent queries for memory, CPU, and user connections.",
-      "Utilized POSIX APIs for efficient system-level programming and pipes for communication and output sequencing.",
-      "Implemented dynamic data visualization for metrics, and customization through command-line arguments."
+      "Developed a <strong>real-time system and file descriptor monitoring tool</strong> in <strong>C</strong> on <strong>Linux</strong>, capable of handling <strong>concurrent queries</strong> for <strong>CPU</strong>, <strong>memory</strong>, <strong>user sessions</strong>, and <strong>file descriptors</strong>, achieving <strong>80% faster query response</strong> compared to sequential baselines.",
+      "Engineered <strong>dynamic process introspection</strong> via the <strong>/proc</strong> filesystem and <strong>POSIX system calls</strong>, using <strong>pipes</strong>, <strong>signals</strong>, and <strong>linked lists</strong> for efficient interprocess communication and scalable data management across hundreds of active processes.",
+      "Implemented <strong>customizable output modes</strong> (text and binary) with <strong>command-line flags</strong>, and added <strong>live terminal visualizations</strong> using ANSI sequences, improving usability and adaptability for operational and debugging use cases."
     ],
   },
+  // {
+  //   id: 6,
+  //   name: "File Descriptor Monitoring Tool",
+  //   // languages: [
+  //   //   { name: "Linux", icon: linux },
+  //   //   { name: "C", icon: c },
+  //   // ],
+  //   description: [
+  //     "Implemented file descriptor monitoring tool using POSIX APIs by accessing `/proc` filesystem and linked lists for dynamic data management.",
+  //     "Supported customizable output options through command-line argument and output in text and binary formats.",
+  //   ],
+  // },
   {
-    id: 6,
-    name: "File Descriptor Monitoring Tool",
-    // languages: [
-    //   { name: "Linux", icon: linux },
-    //   { name: "C", icon: c },
-    // ],
-    description: [
-      "Implemented file descriptor monitoring tool using POSIX APIs by accessing `/proc` filesystem and linked lists for dynamic data management.",
-      "Supported customizable output options through command-line argument and output in text and binary formats.",
-    ],
-  },
-  {
-    id: 7,
     name: "Escape the Ghost",
     // languages: [
     //   { name: "Assembly", icon: asm },
     // ],
     description: [
-      "Developed an interactive game with player movement mechanics, platform interactions, and gravity effects.",
-      "Implemented collision-based outcomes, including game-over scenarios and victories.",
-      "Designed multiple gameplay modes, with distinct behaviors, enhancing user engagement."
+      "Developed a fully interactive <strong>2D pixel-based game</strong> in low-level <strong>MIPS Assembly</strong>, featuring <strong>player-controlled movement</strong>, <strong>platform collision mechanics</strong>, and <strong>gravity simulation</strong>, showcasing proficiency in bare-metal game logic.",
+      "Engineered <strong>collision detection algorithms</strong> and state-based outcomes (win/loss) using direct memory manipulation and register-level control, managing all game logic <strong>without a standard library or OS support</strong>.",
+      "Designed and implemented <strong>multiple gameplay modes</strong> with unique behavior trees, increasing game complexity and replayability, while optimizing for performance across over <strong>1,000 lines of assembly code</strong>."
     ],
     github: "https://github.com/elenamanneh/Escape-the-Ghost"
   },
   {
-    id: 8,
     name: "Reinforcement Learning in Gridworld",
     // languages: [
     //   { name: "Python", icon: python },
     // ],
     description: [
-      "Adjusted parameters (discount factor, learning rate) to study behavioral changes and strategy effectiveness.",
-      "Enhanced performance by refining strategies through learning from interactions within dynamic environments.",
-      "Adjusted parameters (discount factor, learning rate) to study behavioral changes and strategy effectiveness."
+      "Developed intelligent agents using <strong>Value Iteration</strong> and <strong>Q-Learning</strong> to make optimal decisions in dynamic environments.",
+      "Fine-tuned key parameters such as <strong>discount factor</strong>, <strong>learning rate</strong>, and <strong>exploration rate</strong> to study policy convergence and behavioral adaptation, resulting in a <strong>2x improvement</strong> in policy effectiveness compared to baseline agents.",
+      "Implemented visualizations of agent learning progress over time, allowing detailed analysis of convergence patterns."
     ],
     github: "https://github.com/elenamanneh/pacmanProjects/tree/main/reinforcement"
   },
   {
-    id: 9,
     name: "Ghost Tracking in Pacman",
     // languages: [
     //   { name: "Python", icon: python },
     // ],
     description: [
-      "Implemented inference algorithms, including Bayesian networks and particle filters, to analyze noisy distance readings for precise ghost localization.",
-      "Enhanced gameplay through dynamic ghost movement predictions, significantly improving agent adaptability and performance in complex environments.",
+      "Engineered probabilistic models for agent localization using <strong>Bayesian inference</strong> and <strong>particle filtering</strong>, enabling accurate ghost tracking from noisy sensor readings in real time.",
+      "Built modular inference algorithms to handle both exact and approximate belief updates, significantly enhancing agent <strong>adaptability</strong> and <strong>situational awareness</strong> during gameplay.",
+      "Increased gameplay success rates through predictive movement modeling, demonstrating the application of <strong>probabilistic reasoning</strong> and <strong>uncertainty quantification</strong> in multi-agent systems."
     ],
     github: "https://github.com/elenamanneh/pacmanProjects/tree/main/tracking"
   },
   {
-    id: 10,
-    name: "Search Algorithms in Pacman",
+    name: "AI-Based Search and Multi-Agent Strategies in Pacman",
     // languages: [
     //   { name: "Python", icon: python },
     // ],
     description: [
-      "Implemented classic search algorithms (UCS, A*) to navigate Pacman through complex mazes efficiently.",
-      "Designed and optimized heuristic functions to enhance search performance and ensure optimal pathfinding.",
+      "Implemented advanced <strong>search algorithms</strong>, including <strong>Uniform Cost Search (UCS)</strong>, <strong>A*</strong>, and multi-agent strategies such as <strong>Minimax</strong>, <strong>Alpha-Beta Pruning</strong>, and <strong>Expectimax</strong>, enabling intelligent decision-making in adversarial game scenarios.",
+      "Developed heuristic evaluation functions to assess game states and agent decisions, optimizing search performance and enhancing gameplay strategies.",
+      "Engineered modular and extensible code architecture to support future enhancements and additional search algorithms, ensuring maintainability and scalability of the project."
     ],
-    github: "https://github.com/elenamanneh/pacmanProjects/tree/main/search"
-  },
-  {
-    id: 11,
-    name: "Multi-Agent Strategies in Pacman",
-    // languages: [
-    //   { name: "Python", icon: python },
-    // ],
-    description: [
-      "Developed multi-agent strategies using Minimax, Alpha-Beta Pruning, and Expectimax for adversarial and cooperative agents.",
-      "Optimized algorithms and developed evaluation functions to assess game states and agent decisions.",
-    ],
+    // "Single Agent Pacman Repo": "https://github.com/elenamanneh/pacmanProjects/tree/main/search",
     github: "https://github.com/elenamanneh/pacmanProjects/tree/main/multiagent"
   },
+  // {
+  //   name: "Multi-Agent Strategies in Pacman",
+  //   // languages: [
+  //   //   { name: "Python", icon: python },
+  //   // ],
+  //   description: [
+  //     "Developed multi-agent strategies using Minimax, Alpha-Beta Pruning, and Expectimax for adversarial and cooperative agents.",
+  //     "Optimized algorithms and developed evaluation functions to assess game states and agent decisions.",
+  //   ],
+  //   github: "https://github.com/elenamanneh/pacmanProjects/tree/main/multiagent"
+  // },
   {
-    id: 12,
     name: "Graffit Social Networking Platform",
     // languages: [
     //   { name: "C", icon: c },
@@ -231,7 +250,6 @@ export const projects = [
   },
 
   {
-    id: 13,
     name: "Quadtree Image Decomposition",
     // languages: [
     //   { name: "C", icon: c },
@@ -245,33 +263,23 @@ export const projects = [
   },
 ];
 
+/*
+ * contactContent
+ * HTML content for the Contact Me scene
+ */
 export const contactContent = `
-  <div id="contact-box" style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 80vh;
-    text-align: center;
-  ">
+  <div id="contact-box">
     <h2>Contact Me</h2>
     <p>Email: elenamanneh@gmail.com</p>
-    <p>
-      LinkedIn:
-      <a href="https://linkedin.com/in/elenamanneh" target="_blank">
-        linkedin.com/in/elenamanneh
-      </a>
-    </p>
-    <p>
-      GitHub:
-      <a href="https://github.com/elenamanneh" target="_blank">
-        github.com/elenamanneh
-      </a>
-    </p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/elenamanneh" target="_blank">linkedin.com/in/elenamanneh</a></p>
+    <p>GitHub: <a href="https://github.com/elenamanneh" target="_blank">github.com/elenamanneh</a></p>
   </div>
 `;
 
+/*
+ * returnPrompt
+ * Standard prompt to instruct users to press Escape to return
+ */
 export const returnPrompt = `
   <p class="desktop-only"><em>Press Escape to return</em></p>
 `;

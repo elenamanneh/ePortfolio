@@ -1,30 +1,40 @@
-// src/scenes/textPortfolio.js
-import { portfolioMenu, returnPrompt }   from "../constants";
-import { k }                             from "../kaboomCtx";
+import { portfolioMenu, returnPrompt } from "../constants";
+import { k } from "../kaboomCtx";
 import { displayDialogue, cleanAndExit } from "../utils";
 
+/*
+ * textPortfolio scene
+ */
 k.scene("textPortfolio", () => {
-
+  /*
+   * Record last scene and prepare fullscreen UI
+   */
   window.lastScene = "textPortfolio";
-
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 
+  /*
+   * Initialize navigation state and key handlers
+   */
   let nextScene = null;
-  let onKey, onEsc;
+  let onKey;
+  let onEsc;
 
-  // 1) Show dialogue, then cleanup + nav → pass nextScene
+  /*
+   * Display menu content and cleanup on close
+   */
   displayDialogue(
     portfolioMenu + returnPrompt,
     () => {
       window.removeEventListener("keydown", onKey);
-      // pass nextScene into our helper
-      cleanAndExit(ui, onEsc, /*onOutside*/ null, /*stopCloseKey*/ null, nextScene);
+      cleanAndExit(ui, onEsc, null, null, nextScene);
     },
-    /* instant = */ true
+    true
   );
 
-  // 2) Click handlers
+  /*
+   * Handle click navigation for menu options
+   */
   document.getElementById("opt-edu")?.addEventListener("click", () => {
     nextScene = "education";
     document.getElementById("close")?.click();
@@ -38,15 +48,28 @@ k.scene("textPortfolio", () => {
     document.getElementById("close")?.click();
   });
 
-  // 3) Keyboard shortcuts
+  /*
+   * Handle number key shortcuts for menu navigation
+   */
   onKey = (e) => {
-    if (e.key === "1") { nextScene = "education";  document.getElementById("close")?.click(); }
-    if (e.key === "2") { nextScene = "experience"; document.getElementById("close")?.click(); }
-    if (e.key === "3") { nextScene = "projects";   document.getElementById("close")?.click(); }
+    if (e.key === "1") {
+      nextScene = "education";
+      document.getElementById("close")?.click();
+    }
+    if (e.key === "2") {
+      nextScene = "experience";
+      document.getElementById("close")?.click();
+    }
+    if (e.key === "3") {
+      nextScene = "projects";
+      document.getElementById("close")?.click();
+    }
   };
   window.addEventListener("keydown", onKey);
 
-  // 4) Escape always → outside
+  /*
+   * Handle Escape key to return outside
+   */
   onEsc = (e) => {
     if (e.key === "Escape") {
       nextScene = "outside";
@@ -55,7 +78,9 @@ k.scene("textPortfolio", () => {
   };
   window.addEventListener("keydown", onEsc);
 
-  // 5) Back-button
+  /*
+   * Bind Back button to return outside
+   */
   setTimeout(() => {
     const backBtn = document.getElementById("back-btn");
     if (backBtn) {

@@ -1,13 +1,17 @@
 import { contactContent, returnPrompt } from "../constants";
 import { k } from "../kaboomCtx";
 import { displayDialogue, cleanAndExit } from "../utils";
-// import { navigate } from "../router";
 import { onOutsideChoice, stopCloseKey } from "./outside";
 
 let onEsc;
 
+/*
+ * contact scene
+ */
 k.scene("contact", () => {
-  // 1) CLEAN UP ANY LEFTOVER OUTSIDE HANDLERS
+  /*
+   * Remove leftover handlers from outside scene
+   */
   if (onOutsideChoice) {
     window.removeEventListener("keydown", onOutsideChoice);
   }
@@ -15,19 +19,25 @@ k.scene("contact", () => {
     document.removeEventListener("keydown", stopCloseKey, true);
   }
 
-  // 2) SHOW OUR CONTACT DIALOGUE
+  /*
+   * Prepare UI for contact dialog
+   */
   document.getElementById("move-note").style.display = "none";
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 
-  // 3) DISPLAY + use the shared cleanup fn
+  /*
+   * Show contact content with shared cleanup
+   */
   displayDialogue(
     contactContent + returnPrompt,
     () => cleanAndExit(ui, onEsc, onOutsideChoice, stopCloseKey),
     true
   );
 
-  // 4) WIRE ESCAPE TO CLOSE
+  /*
+   * Handle Escape key to close dialog
+   */
   onEsc = (e) => {
     if (e.key === "Escape") {
       document.getElementById("close")?.click();
@@ -35,7 +45,9 @@ k.scene("contact", () => {
   };
   window.addEventListener("keydown", onEsc);
 
-  // 5) BACK-BUTTON REUSE
+  /*
+   * Wire Back button to close dialog
+   */
   setTimeout(() => {
     const backBtn = document.getElementById("back-btn");
     if (backBtn) {

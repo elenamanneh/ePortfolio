@@ -1,7 +1,11 @@
-import { k }          from "./kaboomCtx";
+import { k } from "./kaboomCtx";
 import { loadAssets } from "./assets";
 
-loadAssets();           // load sprites & set background
+/*
+ * Load sprites and set background
+ */
+loadAssets();
+
 import "./scenes/outside";
 import "./scenes/inside";
 import "./scenes/textPortfolio";
@@ -10,12 +14,15 @@ import "./scenes/experience";
 import "./scenes/projects";
 import "./scenes/contact";
 
-window.lastScene = "outside"; // default scene
+/*
+ * Initialize and navigate to the default scene
+ */
+window.lastScene = "outside";
 k.go("outside");
 
-// wire up the Contact Me link
+/*
+ * Handle 'Contact Me' click to navigate to the contact scene
+ */
 document.getElementById("contact-link")?.addEventListener("click", () => {
     k.go("contact");
   });
-  
-

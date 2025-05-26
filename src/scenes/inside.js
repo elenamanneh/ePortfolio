@@ -2,14 +2,20 @@ import { scaleFactor, dialogueData } from "../constants";
 import { k } from "../kaboomCtx";
 import { displayDialogue, setCamScale, playWalkAnim } from "../utils";
 
+/*
+ * inside scene
+ */
 k.scene("inside", async () => {
-
+  /*
+   * Scene setup: track last scene and prepare UI hints
+   */
   window.lastScene = "inside";
   const textboxContainer = document.getElementById("textbox-container");
-
   document.getElementById("move-note").style.display = "block";
-  
-  // load and position the interior map
+
+  /*
+   * Load and position the interior map
+   */
   const mapData = await (await fetch("/spritesheets/map.json")).json();
   const map = k.add([
     k.sprite("map"),
@@ -17,7 +23,9 @@ k.scene("inside", async () => {
     k.scale(scaleFactor),
   ]);
 
-  // create the player entity
+  /*
+   * Create player entity with physics and animations
+   */
   const player = k.make([
     k.sprite("player_spritesheet", { anim: "idle-down" }),
     k.area({ shape: new k.Rect(k.vec2(0, 3), 10, 10) }),
@@ -29,11 +37,12 @@ k.scene("inside", async () => {
     "player",
   ]);
 
-  // iterate through map layers for boundaries and spawnpoints
+  /*
+   * Process map layers: boundaries, spawnpoints, and doors
+   */
   for (const layer of mapData.layers) {
     if (layer.name === "boundaries") {
-      for (const boundary of layer.objects) {
-        // add collision shapes
+      layer.objects.forEach((boundary) => {
         map.add([
           k.area({ shape: new k.Rect(k.vec2(0), boundary.width, boundary.height) }),
           k.body({ isStatic: true }),
@@ -41,27 +50,26 @@ k.scene("inside", async () => {
           boundary.name,
         ]);
 
-        // exit door: immediate scene change
         if (boundary.name === "exit") {
+          /*
+           * Exit collision: return to outside scene
+           */
           player.onCollide("exit", () => {
-            // document.getElementById("close")?.click();
-            // player.isInDialogue = false;
             k.go("outside");
           });
         }
-        // interactable object: show dialogue
         else if (boundary.name) {
+          /*
+           * Interactable collision: show dialogue for each object
+           */
           player.onCollide(boundary.name, () => {
             player.isInDialogue = true;
-                // instant=true so our spans are injected immediately
+            const key = boundary.name;
 
-              player.onCollide(boundary.name, () => {
-              player.isInDialogue = true;
-              const key = boundary.name;   // e.g. "desk", "cs-degree", "bookshelf"
-
-              // 1) install typingDone listener *before* starting the typewriter
-              const onTypingDone = () => {
-              // only wire the span that’s relevant for this boundary:
+            /*
+             * Attach link handlers after typewriter completes
+             */
+            const onTypingDone = () => {
               if (key === "desk") {
                 document
                   .getElementById("experience-link-inside")
@@ -86,92 +94,19 @@ k.scene("inside", async () => {
                     k.go("projects");
                   }, { once: true });
               }
-
-              // remove the typingDone listener
               textboxContainer.removeEventListener("typingDone", onTypingDone);
             };
             textboxContainer.addEventListener("typingDone", onTypingDone, { once: true });
 
-              // 2) fire off the typewriter.  When the user clicks “Close”,
-              //    this callback runs *after* the spans exist but we won’t
-              //    wire them here anymore—just reset state.
-              displayDialogue(
-                dialogueData[key],
-                () => {
-                  player.isInDialogue = false;
-                }
-              );
+            /*
+             * Display dialogue with typewriter animation
+             */
+            displayDialogue(dialogueData[key], () => {
+              player.isInDialogue = false;
             });
-
-
-              // displayDialogue(
-              //   dialogueData[boundary.name],
-              //   () => {
-              //     // now that typing is done, wire up the links:
-              //     document
-              //       .getElementById("experience-link-inside")
-              //       ?.addEventListener("click", () => {
-              //         document.getElementById("close")?.click();
-              //         k.go("experience");
-              //       });
-
-              //     document
-              //       .getElementById("education-link-inside")
-              //       ?.addEventListener("click", () => {
-              //         document.getElementById("close")?.click();
-              //         k.go("education");
-              //       });
-
-              //     document
-              //       .getElementById("projects-link-inside")
-              //       ?.addEventListener("click", () => {
-              //         document.getElementById("close")?.click();
-              //         k.go("projects");
-              //       });
-
-              //     // finally, allow movement again
-              //     player.isInDialogue = false;
-              //   }
-              // );
-
-                // displayDialogue(
-                //   dialogueData[boundary.name],
-                //   () => { player.isInDialogue = false; },
-                //   true
-                // );
-
-                // // now wire up any “inside” links
-                // setTimeout(() => {
-                //   document
-                //     .getElementById("experience-link-inside")
-                //     ?.addEventListener("click", () => {
-                //       document.getElementById("close")?.click();
-                //       k.go("experience");
-                //     });
-
-                //   document
-                //     .getElementById("projects-link-inside")
-                //     ?.addEventListener("click", () => {
-                //       document.getElementById("close")?.click();
-                //       k.go("projects");
-                //     });
-                //   document
-                //     .getElementById("education-link-inside")
-                //     ?.addEventListener("click", () => {
-                //       document.getElementById("close")?.click();
-                //       k.go("education");
-                //     });
-            
-                //   document
-                //     .getElementById("projects-link-inside")
-                //     ?.addEventListener("click", () => {
-                //       document.getElementById("close")?.click();
-                //       k.go("projects");
-                //     });
-                // }, 0);
           });
         }
-      }
+      });
       continue;
     }
 
@@ -188,8 +123,10 @@ k.scene("inside", async () => {
       }
     }
 
-    // render doors sprites above player
     if (layer.name === "doors") {
+      /*
+       * Render door overlays above player
+       */
       k.add([
         k.sprite("map_doors"),
         k.pos(0, 0),
@@ -199,14 +136,18 @@ k.scene("inside", async () => {
     }
   }
 
-  // camera behavior
+  /*
+   * Camera scaling and centering on player
+   */
   setCamScale(k);
   k.onResize(() => setCamScale(k));
   k.onUpdate(() => {
     k.camPos(player.pos.x, player.pos.y + 100);
   });
 
-  // player movement via mouse
+  /*
+   * Mouse-driven movement and walk animations
+   */
   k.onMouseDown((btn) => {
     if (btn !== "left" || player.isInDialogue) return;
     const target = k.toWorld(k.mousePos());
@@ -234,19 +175,25 @@ k.scene("inside", async () => {
     return;
   }
   });
-
-  // stop animations on release
   const stop = () => {
     switch (player.direction) {
-      case "up":    player.play("idle-up");    break;
-      case "down":  player.play("idle-down");  break;
-      default:       player.play("idle-side");  break;
+      case "up":
+        player.play("idle-up");
+        break;
+      case "down":
+        player.play("idle-down");
+        break;
+      default:
+        player.play("idle-side");
+        break;
     }
   };
   k.onMouseRelease(stop);
   k.onKeyRelease(stop);
 
-  // keyboard movement
+  /*
+   * Keyboard movement via arrow keys
+   */
   k.onKeyDown(() => {
     const dirs = ["right","left","up","down"].map(k.isKeyDown);
     if (dirs.filter(Boolean).length !== 1 || player.isInDialogue) return;

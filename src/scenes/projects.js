@@ -1,19 +1,25 @@
-// import { projects, projectsHeader, returnPrompt } from "../constants";
-import { k }                                   from "../kaboomCtx";
-// import { displayDialogue }                     from "../utils";
-// src/scenes/projects.js
-
+/*
+ * projects.js
+ * Scene for displaying project list with details and handling cleanup
+ */
+import { k } from "../kaboomCtx";
 import { projects, projectsHeader, returnPrompt } from "../constants";
-import { displayDialogue, cleanAndExit }         from "../utils";
+import { displayDialogue, cleanAndExit } from "../utils";
 
+/*
+ * projects scene
+ */
 k.scene("projects", () => {
+  /*
+   * Prepare UI: show fullscreen dialogue container
+   */
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 
-  // 1) which scene to return to
-  let onEsc;
 
-  // 2) build the HTML
+  /*
+   * Build HTML content for each project
+   */
   const projectDetails = projects
     .map((p) => `
       <details>
@@ -32,14 +38,15 @@ k.scene("projects", () => {
     ${returnPrompt}
   `;
 
-  // 3) show dialogue, then shared cleanup → back to textPortfolio
-  displayDialogue(
-    content,
-    () => cleanAndExit(ui, onEsc),
-    true
-  );
+  /*
+   * Display projects content and cleanup on close
+   */
+  let onEsc;
+  displayDialogue(content, () => cleanAndExit(ui, onEsc), true);
 
-  // 4) Escape to close
+  /*
+   * Close dialog on Escape key
+   */
   onEsc = (e) => {
     if (e.key === "Escape") {
       document.getElementById("close")?.click();
@@ -47,7 +54,9 @@ k.scene("projects", () => {
   };
   window.addEventListener("keydown", onEsc);
 
-  // 5) Back-button → same “close” path
+  /*
+   * Bind Back button to close dialog
+   */
   setTimeout(() => {
     const backBtn = document.getElementById("back-btn");
     if (backBtn) {

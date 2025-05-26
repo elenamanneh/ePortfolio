@@ -1,6 +1,8 @@
 import kaboom from "kaboom";
 
-// initialize kaboom context
+/*
+ * Configure and create the Kaboom instance
+ */
 export const k = kaboom({
     global: false,
     touchToMouse: true,

@@ -1,6 +1,9 @@
 import { k } from "./kaboomCtx";
 
-// Centralized asset loading to be called once at startup
+/*
+ * loadAssets
+ * Loads all sprites and configures the global background color
+ */
 export function loadAssets() {
   // player sprite sheet
   k.loadSprite("player_spritesheet", "./spritesheets/spritesheet_demo_player.png", {
@@ -18,8 +21,10 @@ export function loadAssets() {
 
   // interior map
   k.loadSprite("map", "./spritesheets/map.png");
+
   // door overlays
   k.loadSprite("map_doors", "./spritesheets/map_doors.png");
+  
   // outside background
   k.loadSprite("map_outside", "./spritesheets/map_bg.png");
 

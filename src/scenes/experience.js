@@ -1,27 +1,31 @@
-// import { experienceContent, returnPrompt } from "../constants";
-import { k }                         from "../kaboomCtx";
-// import { displayDialogue }          from "../utils";
-// src/scenes/experience.js
-
+import { k } from "../kaboomCtx";
 import { experienceContent, returnPrompt } from "../constants";
-import { displayDialogue, cleanAndExit }  from "../utils";
+import { displayDialogue, cleanAndExit } from "../utils";
 
+/*
+ * experience scene
+ */
 k.scene("experience", () => {
+  /*
+   * Prepare UI: show fullscreen dialogue container
+   */
   const ui = document.getElementById("textbox-container");
   ui.classList.add("fullscreen");
 
-  // 1) keep a reference to our Escape listener
+  /*
+   * Display experience content with shared cleanup on close
+   */
   let onEsc;
 
-  // 2) show content, then shared cleanup + nav → textPortfolio
-    // no override → cleanAndExit will use window.lastScene (set by textPortfolio or inside)
     displayDialogue(
       experienceContent + returnPrompt,
       () => cleanAndExit(ui, onEsc),
       true
     );
 
-  // 3) wire Escape → click Close
+  /*
+   * Close dialog on Escape key
+   */
   onEsc = (e) => {
     if (e.key === "Escape") {
       document.getElementById("close")?.click();
@@ -29,7 +33,9 @@ k.scene("experience", () => {
   };
   window.addEventListener("keydown", onEsc);
 
-  // 4) back-button fires the same “close” path
+  /*
+   * Wire Back button to close dialog
+   */
   setTimeout(() => {
     const backBtn = document.getElementById("back-btn");
     if (backBtn) {

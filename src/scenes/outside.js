@@ -1,5 +1,5 @@
 import { scaleFactor, doorPrompt } from "../constants";
-import { k }                                    from "../kaboomCtx";
+import { k } from "../kaboomCtx";
 import {
   displayDialogue,
   setCamScale,
@@ -10,8 +10,13 @@ import {
 export let onOutsideChoice;
 export let stopCloseKey;
 
+/*
+ * outside scene
+ */
 k.scene("outside", async () => {
-  // ─── 1) CLEAN UP ANY OLD HANDLERS ────────────────────────────────
+  /*
+   * Cleanup any previous event handlers
+   */
   if (onOutsideChoice) {
     window.removeEventListener("keydown", onOutsideChoice);
     onOutsideChoice = null;
@@ -21,11 +26,15 @@ k.scene("outside", async () => {
     stopCloseKey = null;
   }
 
+  /*
+   * Record last scene and hide movement hint
+   */
   window.lastScene = "outside";
-
-  // ─── 2) INITIAL SETUP ───────────────────────────────────────────
   document.getElementById("move-note").style.display = "none";
 
+  /*
+   * Load exterior map and background sprite
+   */
   const mapData = await (await fetch("/spritesheets/map_outside.json")).json();
   const map = k.add([
     k.sprite("map_outside"),
@@ -34,6 +43,9 @@ k.scene("outside", async () => {
     k.scale(scaleFactor),
   ]);
 
+  /*
+   * Create player entity with physics and animations
+   */
   const player = k.make([
     k.sprite("player_spritesheet", { anim: "idle-down" }),
     k.area({ shape: new k.Rect(k.vec2(0, 3), 10, 10) }),
@@ -47,7 +59,9 @@ k.scene("outside", async () => {
 
   let dialogueTriggered = false;
 
-  // ─── 3) BOUNDARIES & DOOR INTERACTION ───────────────────────────
+  /*
+   * Add collision boundaries and door interaction
+   */
   for (const layer of mapData.layers) {
     if (layer.name === "boundaries") {
       for (const boundary of layer.objects) {
@@ -66,11 +80,16 @@ k.scene("outside", async () => {
 
             let nextScene = null;
             const textboxContainer = document.getElementById("textbox-container");
-            // hide the Close button
+
+            /*
+             * Temporarily disable Close button until choice is made
+             */
             const btnContainer = textboxContainer.querySelector(".btn-container");
             btnContainer.style.display = "none";
 
-            // swallow Enter/Q so user must pick 1 or 2
+            /*
+             * Prevent Enter/Q from closing dialogue prematurely
+             */
             stopCloseKey = (e) => {
               if (e.code === "Enter" || e.code === "KeyQ") {
                 e.preventDefault();
@@ -79,31 +98,30 @@ k.scene("outside", async () => {
             };
             document.addEventListener("keydown", stopCloseKey, true);
 
-            // show choice prompt and hand off cleanup + nav to cleanAndExit
+            /*
+             * Show door choice prompt and handle navigation on close
+             */
             displayDialogue(doorPrompt, () => {
-              // restore Close button
               btnContainer.style.display = "";
-              // shared cleanup + navigation
               cleanAndExit(
                 textboxContainer,
-                /* onEsc */      null,
+                null,
                 onOutsideChoice,
                 stopCloseKey,
                 nextScene
               );
-              // reset globals & flags
               onOutsideChoice = null;
-              stopCloseKey     = null;
+              stopCloseKey = null;
               player.isInDialogue = false;
-              dialogueTriggered   = false;
+              dialogueTriggered = false;
             });
 
-            // 3) listen for the “typingDone” event, then attach your span click-handlers
+            /*
+             * Attach click handlers after typewriter finishes
+             */
             textboxContainer.addEventListener("typingDone", () => {
-              // now the spans *definitely* exist
               const explore = document.getElementById("opt-explore");
-              const text    = document.getElementById("opt-text");
-              // sanity check
+              const text = document.getElementById("opt-text");
               if (!explore || !text) {
                 return;
               }
@@ -118,18 +136,9 @@ k.scene("outside", async () => {
               }, { once: true });
             }, { once: true });
 
-
-            // wire up your 1/2 buttons
-            // document.getElementById("opt-explore")?.addEventListener("click", () => {
-            //   nextScene = "inside";
-            //   document.getElementById("close")?.click();
-            // });
-            // document.getElementById("opt-text")?.addEventListener("click", () => {
-            //   nextScene = "textPortfolio";
-            //   document.getElementById("close")?.click();
-            // });
-
-            // global key choices
+            /*
+             * Handle keyboard choice 1/2
+             */
             onOutsideChoice = (e) => {
               if (!player.isInDialogue) return;
               if (e.key === "1") {
@@ -148,7 +157,9 @@ k.scene("outside", async () => {
       continue;
     }
 
-    // ─── 4) SPAWNPOINTS ──────────────────────────────────────────────
+    /*
+     * Set player spawnpoint
+     */
     if (layer.name === "spawnpoints") {
       for (const entity of layer.objects) {
         if (entity.name === "player") {
@@ -163,12 +174,16 @@ k.scene("outside", async () => {
     }
   }
 
-  // ─── 5) CAMERA & RESIZE ──────────────────────────────────────────
+  /*
+   * Configure camera scaling and centering
+   */
   setCamScale(k);
   k.onResize(() => setCamScale(k));
   k.onUpdate(() => k.camPos(player.pos.x, player.pos.y + 100));
 
-  // ─── 6) MOUSE MOVEMENT & ANIMATIONS ─────────────────────────────
+  /*
+   * Mouse-based movement and walk animations
+   */
   k.onMouseDown((btn) => {
     if (btn !== "left" || player.isInDialogue) return;
     const target = k.toWorld(k.mousePos());
@@ -187,7 +202,9 @@ k.scene("outside", async () => {
   k.onMouseRelease(stop);
   k.onKeyRelease(stop);
 
-  // ─── 7) ARROW-KEY MOVEMENT ───────────────────────────────────────
+  /*
+   * Arrow-key movement handling
+   */
   k.onKeyDown(() => {
     if (player.isInDialogue) return;
     const dirs = ["right", "left", "up", "down"].map(k.isKeyDown);
