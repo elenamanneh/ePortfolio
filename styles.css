@@ -97,6 +97,18 @@ body {
   align-self: flex-end;
   margin-top: 1rem;
 }
+/* hide by default */
+ .desktop-only {
+  display: none;
+}
+
+/* show once the screen is at least 1024px wide (desktop) */
+@media (min-width: 1024px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
 
 /**
  * Back Button

@@ -7,11 +7,11 @@ export const dialogueData = {
   "cs-degree": `This is my Computer Science degree from the University of Toronto.
   I specialized in Information Systems, gaining hands-on experience while studying topics like Software Engineering, Database Systems, Algorithm Design and Operating Systems.
   <span id="education-link-inside" style="cursor:pointer; text-decoration:underline;">>> More about education</span>`,
-  kitchen: `This is the kitchen, this is where I spend most of my free time. I like to cook, try out new recipes, and just chill after a long day. It's my way of taking a break from screens and doing something hands-on.`,
+  kitchen: `This is the kitchen, this is where I spend most of my free time. I like to cook, try out new recipes, and just chill after a long day. It's my way of taking a break from screens and doing something hands-on.`, // TODO i don't like hands-on
   bookshelf: `Here is a collection of some of my favorite CS projects.
-  There is *Pursuiter*, a job application website powered by AI to give feedback and filter applicants.
-  Then there is *Stocks Social Network*, where I built a full social platform and optimized a massive PostgreSQL database.
-  And *Walnut*, a course scheduler Android app to help UofT students plan their classes more easily.
+  There is Pursuiter, a job application website powered by AI to give feedback and filter applicants.
+  I also built Stocks Social Network, a full social platform that optimized a massive PostgreSQL database.
+  And Walnut, a course scheduler Android app to help UofT students plan their classes more easily.
 
   <span id="projects-link-inside" style="cursor:pointer; text-decoration:underline;">>> More about projects</span>`
 };
@@ -19,7 +19,7 @@ export const dialogueData = {
 // text for “door” choice
 export const doorPrompt = `
   <div style="margin-bottom: 1rem;">
-    Do you want to explore inside the house or view a text version of the portfolio?
+    Hello! I am Elena. Welcome to my portfolio. You can explore my house to learn more about me, or view the text version.
   </div>
   <strong><span id="opt-explore" style="cursor:pointer; text-decoration:underline;">
     [1] Explore inside the house
@@ -256,7 +256,7 @@ export const contactContent = `
     text-align: center;
   ">
     <h2>Contact Me</h2>
-    <p>Email: elena.manneh@mail.utoronto.ca</p>
+    <p>Email: elenamanneh@gmail.com</p>
     <p>
       LinkedIn:
       <a href="https://linkedin.com/in/elenamanneh" target="_blank">
@@ -272,5 +272,6 @@ export const contactContent = `
   </div>
 `;
 
-/** Standard “press Escape to return” prompt */
-export const returnPrompt = `<p><em>Press Escape to return</em></p>`;
+export const returnPrompt = `
+  <p class="desktop-only"><em>Press Escape to return</em></p>
+`;
