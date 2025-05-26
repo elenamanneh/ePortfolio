@@ -1,1 +1,42 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/ePortfolio/avatar.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><link rel="apple-touch-icon" href="/ePortfolio/avatar.png"/><link rel="manifest" href="/ePortfolio/manifest.json"/><title>Elena Manneh's ePortfolio</title><script defer="defer" src="/ePortfolio/static/js/main.1f368ffd.js"></script><link href="/ePortfolio/static/css/main.d30e7bd0.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/ePortfolio/icon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elena Manneh's ePortfolio</title>
+    <script type="module" crossorigin src="/ePortfolio/assets/index-19c8fJIp.js"></script>
+    <link rel="stylesheet" crossorigin href="/ePortfolio/assets/index-nBebucbd.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Sidebar Notes -->
+      <div class="note">
+        <p id="contact-link">
+          Contact Me
+        </p>
+        <p id="move-note" style="display: none; margin:0; line-height:1;">
+          Tap/Click around to move
+          <br>Use arrow keys (← ↑ ↓ →) to move</br>
+        </p>
+      </div>
+
+      <!-- Dialogue Container -->
+      <div id="textbox-container" style="display: none;">
+        <div id="textbox">
+          <div>
+            <button id="back-btn" class="ui-back-btn">Back</button>
+          </div>
+          <p id="dialogue" class="ui-text"></p>
+          <div class="btn-container">
+            <button id="close" class="ui-close-btn">
+              Close [Q]
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Canvas -->
+      <canvas id=game></canvas>
+  </body>
+</html>
